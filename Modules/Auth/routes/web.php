@@ -14,6 +14,5 @@ use Modules\Auth\App\Http\Controllers\AuthController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('auth', AuthController::class)->names('auth');
-});
+Route::get('/', [AuthController::class, 'loginIndex'])->name('auth.loginIndex');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
