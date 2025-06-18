@@ -16,3 +16,4 @@ use Modules\Auth\App\Http\Controllers\AuthController;
 
 Route::get('/', [AuthController::class, 'loginIndex'])->name('auth.loginIndex');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');

@@ -1,7 +1,10 @@
 @extends('auth::layouts.master')
 
 @section('content')
-    <h1>Hello World</h1>
-
-    <p>Module: {!! config('auth.name') !!}</p>
+    <form action="{{ route('auth.login') }}" method="POST">
+        @csrf
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button>Login</button>
+    </form>
 @endsection
