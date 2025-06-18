@@ -19,6 +19,7 @@
 
     {{-- Vite CSS --}}
     {{-- {{ module_vite('build-role', 'resources/assets/sass/app.scss') }} --}}
+    @vite('resources/css/app.css')
 </head>
 
 <body>
@@ -26,4 +27,5 @@
 
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-role', 'resources/assets/js/app.js') }} --}}
+    @vite('resources/js/app.js')
 </body>
