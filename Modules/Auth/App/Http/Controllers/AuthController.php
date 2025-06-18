@@ -24,9 +24,11 @@ class AuthController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
+
+            return redirect()->route('dashboard.index');
         }
 
-        return redirect()->back()->with(['error' => '']);
+        return redirect()->back()->with(['error' => 'Error']);
     }
 
     public function logout(Request $request)
