@@ -1,4 +1,5 @@
 {
     "Role": true,
-    "Auth": true
+    "Auth": true,
+    "Notification": true
 }
