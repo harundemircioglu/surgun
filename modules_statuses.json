@@ -2,5 +2,6 @@
     "Role": true,
     "Auth": true,
     "Notification": true,
-    "Dashboard": true
+    "Dashboard": true,
+    "Plant": true
 }
