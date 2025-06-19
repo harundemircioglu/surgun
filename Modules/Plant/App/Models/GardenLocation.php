@@ -4,7 +4,7 @@ namespace Modules\Plant\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SeedBank extends Model
+class GardenLocation extends Model
 {
     protected $guarded = [];
 }
