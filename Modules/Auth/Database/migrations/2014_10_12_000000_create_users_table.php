@@ -18,8 +18,9 @@ return new class extends Migration {
             $table->string('phone')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
             $table->boolean('two_step_verification')->nullable()->default(false);
+            $table->string('user_code')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
