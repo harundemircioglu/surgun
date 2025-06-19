@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'Super Admin',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
-        ])->assignRole('super-admin');
+        ])->assignRole('super-admin')->givePermissionTo(['can_create_data', 'can_update_data', 'can_delete_data']);
 
         User::firstOrCreate([
             'email' => 'admin@surgun.com',
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
-        ])->assignRole('admin');
+        ])->assignRole('admin')->givePermissionTo(['can_create_data', 'can_update_data', 'can_conditional_delete_data']);
 
         User::firstOrCreate([
             'email' => 'guest@surgun.com',
@@ -34,6 +34,6 @@ class UserSeeder extends Seeder
             'name' => 'Guest',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
-        ])->assignRole('guest');
+        ])->assignRole('guest')->givePermissionTo(['can_create_data', 'can_update_data', 'can_conditional_delete_data']);
     }
 }
