@@ -16,6 +16,11 @@ class SeedCabinetRequest extends FormRequest
         ];
     }
 
+    public function messages(): array
+    {
+        return [];
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      */
