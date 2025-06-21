@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Plant\App\Http\Requests\Create\PlantMaterialRequest;
 
 class PlantMaterialController extends Controller
 {
@@ -28,7 +29,7 @@ class PlantMaterialController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(PlantMaterialRequest $request): RedirectResponse
     {
         //
     }
@@ -52,7 +53,7 @@ class PlantMaterialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(\Modules\Plant\App\Http\Requests\Update\PlantMaterialRequest $request, $id): RedirectResponse
     {
         //
     }
