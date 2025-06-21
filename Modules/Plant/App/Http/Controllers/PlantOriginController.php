@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Plant\App\Http\Requests\Create\PlantOriginRequest;
+use Modules\Plant\App\Models\PlantOrigin;
 
 class PlantOriginController extends Controller
 {
@@ -31,7 +32,10 @@ class PlantOriginController extends Controller
      */
     public function store(PlantOriginRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        PlantOrigin::create($data);
+
+        return back()->with(['success' => 'Plant origin created successfully.']);
     }
 
     /**
@@ -55,7 +59,16 @@ class PlantOriginController extends Controller
      */
     public function update(\Modules\Plant\App\Http\Requests\Update\PlantOriginRequest $request, $id): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $plantOrigin = PlantOrigin::find($id);
+
+        if (!$plantOrigin) {
+            return back()->with(['error' => 'Plant origin not found.']);
+        }
+
+        $plantOrigin->update($data);
+
+        return back()->with(['success' => 'Plant origin updated successfully.']);
     }
 
     /**
@@ -63,6 +76,14 @@ class PlantOriginController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $plantOrigin = PlantOrigin::find($id);
+
+        if (!$plantOrigin) {
+            return back()->with(['error' => 'Plant origin not found.']);
+        }
+
+        $plantOrigin->delete();
+
+        return back()->with(['success' => 'Plant origin deleted successfully.']);
     }
 }

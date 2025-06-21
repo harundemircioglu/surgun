@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Plant\App\Http\Controllers\PlantController;
 use Modules\Plant\App\Http\Controllers\PlantMaterialController;
+use Modules\Plant\App\Http\Controllers\PlantOriginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,9 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plan
     });
 
     Route::prefix('origin')->name('origin.')->group(function () {
-
+        Route::post('store', [PlantOriginController::class, 'store'])->name('store')->middleware('can:can_create_data');
+        Route::post('update', [PlantOriginController::class, 'update'])->name('update')->middleware('can:can_update_data');
+        Route::post('destroy', [PlantOriginController::class, 'destroy'])->name('destroy')->middleware(['can:can_delete_data']);
     });
 
     Route::prefix('accession-notebook')->name('accession-notebook.')->group(function () {
