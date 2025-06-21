@@ -14,6 +14,32 @@ use Modules\Plant\App\Http\Controllers\PlantController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('plant', PlantController::class)->names('plant');
+Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plant')->name('plant.')->group(function () {
+    Route::prefix('material')->name('material.')->group(function () {
+
+    });
+
+    Route::prefix('origin')->name('origin.')->group(function () {
+
+    });
+
+    Route::prefix('accession-notebook')->name('accession-notebook.')->group(function () {
+
+    });
+
+    Route::prefix('seed-cabinet')->name('seed-cabinet.')->group(function () {
+
+    });
+
+    Route::prefix('seed-bank')->name('seed-bank.')->group(function () {
+
+    });
+
+    Route::prefix('garden-location')->name('garden-location.')->group(function () {
+
+    });
+
+    Route::prefix('plant-status')->name('plant-status.')->group(function () {
+
+    });
 });
