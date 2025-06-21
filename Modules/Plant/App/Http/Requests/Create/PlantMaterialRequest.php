@@ -12,13 +12,18 @@ class PlantMaterialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255', 'unique:table,plant_materials,name'],
         ];
     }
 
     public function messages(): array
     {
-        return [];
+        return [
+            'name.required' => 'The name field is required.',
+            'name.string' => 'The name must be a valid string.',
+            'name.max' => 'The name must not exceed 255 characters.',
+            'name.unique' => 'The name has already been taken.',
+        ];
     }
 
     /**

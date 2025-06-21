@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Plant\App\Http\Requests\Create\PlantMaterialRequest;
+use Modules\Plant\App\Models\PlantMaterial;
 
 class PlantMaterialController extends Controller
 {
@@ -31,7 +32,10 @@ class PlantMaterialController extends Controller
      */
     public function store(PlantMaterialRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        PlantMaterial::create($data);
+
+        return back()->with(['success' => 'Plant material created successfully.']);
     }
 
     /**
@@ -55,7 +59,16 @@ class PlantMaterialController extends Controller
      */
     public function update(\Modules\Plant\App\Http\Requests\Update\PlantMaterialRequest $request, $id): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $plantMaterial = PlantMaterial::find($id);
+
+        if (!$plantMaterial) {
+            return back()->with(['error' => 'Plant material not found.']);
+        }
+
+        $plantMaterial->update($data);
+
+        return back()->with(['success' => 'Plant material updated successfully.']);
     }
 
     /**
@@ -63,6 +76,14 @@ class PlantMaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $plantMaterial = PlantMaterial::find($id);
+
+        if (!$plantMaterial) {
+            return back()->with(['error' => 'Plant material not found.']);
+        }
+
+        $plantMaterial->delete();
+
+        return back()->with(['success' => 'Plant material deleted successfully.']);
     }
 }

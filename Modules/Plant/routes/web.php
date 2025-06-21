@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Plant\App\Http\Controllers\PlantController;
+use Modules\Plant\App\Http\Controllers\PlantMaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,9 @@ use Modules\Plant\App\Http\Controllers\PlantController;
 
 Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plant')->name('plant.')->group(function () {
     Route::prefix('material')->name('material.')->group(function () {
-
+        Route::post('store', [PlantMaterialController::class, 'store'])->name('store')->middleware('can:can_create_data');
+        Route::post('update', [PlantMaterialController::class, 'update'])->name('update')->middleware('can:can_update_data');
+        Route::post('destroy', [PlantMaterialController::class, 'destroy'])->name('destroy')->middleware(['can:can_delete_data']);
     });
 
     Route::prefix('origin')->name('origin.')->group(function () {
