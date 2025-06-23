@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('two_step_verification')->nullable()->default(false);
+            $table->boolean('is_changed_first_password')->default(false)->nullable();
             $table->string('collector_code')->nullable();
             $table->enum('role', [1, 2, 3])->default(3)->nullable();
             $table->boolean('is_active')->default(true)->nullable();
