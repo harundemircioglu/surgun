@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Plant\App\Http\Requests\Create\GardenLocationRequest;
+use Modules\Plant\App\Models\GardenLocation;
 
 class GardenLocationController extends Controller
 {
@@ -31,7 +32,10 @@ class GardenLocationController extends Controller
      */
     public function store(GardenLocationRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        GardenLocation::create($data);
+
+        return redirect()->back()->with(['success' => 'Garden Location created successfully']);
     }
 
     /**
@@ -55,7 +59,16 @@ class GardenLocationController extends Controller
      */
     public function update(\Modules\Plant\App\Http\Requests\Update\GardenLocationRequest $request, $id): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $gardenLocation = GardenLocation::find($id);
+
+        if (!$gardenLocation) {
+            return redirect()->back()->with(['error' => 'Garden Location not found']);
+        }
+
+        $gardenLocation->update($data);
+
+        return redirect()->back()->with(['success' => 'Garden Location updated successfully']);
     }
 
     /**
@@ -63,6 +76,14 @@ class GardenLocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gardenLocation = GardenLocation::find($id);
+
+        if (!$gardenLocation) {
+            return redirect()->back()->with(['error' => 'Garden Location not found']);
+        }
+
+        $gardenLocation->delete();
+
+        return redirect()->back()->with(['success' => 'Garden Location deleted successfully']);
     }
 }
