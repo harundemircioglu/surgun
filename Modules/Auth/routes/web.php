@@ -17,7 +17,14 @@ use Modules\Auth\App\Http\Controllers\UserController;
 
 Route::get('/', [AuthController::class, 'loginIndex'])->name('auth.loginIndex');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');
+
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+    // change first password
+    Route::get('/change-first-password', [AuthController::class, 'changeFirstPasswordIndex'])->name('auth.changeFirstPasswordIndex');
+    Route::post('/change-first-password', [AuthController::class, 'changeFirstPassword'])->name('auth.changeFirstPassword');
+});
 
 Route::middleware(['auth', 'web'])->prefix('user')->name('user.')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('index');

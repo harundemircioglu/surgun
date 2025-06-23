@@ -39,7 +39,6 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'role' => 3,
-            'is_changed_first_password' => true,
         ])->assignRole('guest')->givePermissionTo(['can_create_data', 'can_update_data', 'can_conditional_delete_data']);
     }
 }

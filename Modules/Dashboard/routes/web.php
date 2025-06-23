@@ -14,6 +14,6 @@ use Modules\Dashboard\App\Http\Controllers\DashboardController;
 |
 */
 
-Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function () {
+Route::middleware(['web', 'auth', 'check_first_password_change'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 });
