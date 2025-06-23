@@ -16,7 +16,9 @@ class PlantMaterialController extends Controller
      */
     public function index()
     {
-        return view('plant::index');
+        $plantMaterials = PlantMaterial::where('status', 1)->paginate(20);
+
+        return view('plant::plantMaterial.index', compact('plantMaterials'));
     }
 
     /**

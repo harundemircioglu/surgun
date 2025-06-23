@@ -16,7 +16,17 @@ class AccessionNotebookController extends Controller
      */
     public function index()
     {
-        return view('plant::index');
+        $accesionNotebooks = AccesionNotebook::where('status', 1)
+            ->with(
+                [
+                    'user',
+                    'material',
+                    'origin',
+                ]
+            )
+            ->paginate(20);
+
+        return view('plant::accesionNotebook.index', compact('accesionNotebooks'));
     }
 
     /**

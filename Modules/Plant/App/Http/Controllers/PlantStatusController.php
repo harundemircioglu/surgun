@@ -16,7 +16,14 @@ class PlantStatusController extends Controller
      */
     public function index()
     {
-        return view('plant::index');
+        $plantStatuses = PlantStatus::where('status', 1)
+            ->with([
+                'accesionNotebook',
+                'gardeLocation',
+            ])
+            ->paginate(20);
+
+        return view('plant::plantStatus.index', compact('plantStatuses'));
     }
 
     /**

@@ -16,7 +16,16 @@ class SeedBankController extends Controller
      */
     public function index()
     {
-        return view('plant::index');
+        $seedBanks = SeedBank::where('status', 1)
+            ->with(
+                [
+                    'accessionNotebook',
+                    'seedCabinet',
+                ]
+            )
+            ->paginate(20);
+
+        return view('plant::seedBank.index', compact('seedBanks'));
     }
 
     /**

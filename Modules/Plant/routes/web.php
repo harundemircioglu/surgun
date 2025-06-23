@@ -24,6 +24,7 @@ use Modules\Plant\App\Http\Controllers\SeedCabinetController;
 Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plant')->name('plant.')->group(function () {
     Route::prefix('material')->name('material.')->group(function () {
         // List and show routes
+        Route::get('/', [PlantMaterialController::class, 'index'])->name('index');
 
         // Create, update, and delete routes
         Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
@@ -35,6 +36,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plan
 
     Route::prefix('origin')->name('origin.')->group(function () {
         // List and show routes
+        Route::get('/', [PlantOriginController::class, 'index'])->name('index');
 
         // Create, update, and delete routes
         Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
@@ -46,6 +48,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plan
 
     Route::prefix('accession-notebook')->name('accession-notebook.')->group(function () {
         // List and show routes
+        Route::get('/', [AccessionNotebookController::class, 'index'])->name('index');
 
         // Create, update, and delete routes
         Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
@@ -57,6 +60,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plan
 
     Route::prefix('seed-cabinet')->name('seed-cabinet.')->group(function () {
         // List and show routes
+        Route::get('/', [SeedCabinetController::class, 'index'])->name('index');
 
         // Create, update, and delete routes
         Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
@@ -68,6 +72,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plan
 
     Route::prefix('seed-bank')->name('seed-bank.')->group(function () {
         // List and show routes
+        Route::get('/', [SeedBankController::class, 'index'])->name('index');
 
         // Create, update, and delete routes
         Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
@@ -79,6 +84,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plan
 
     Route::prefix('garden-location')->name('garden-location.')->group(function () {
         // List and show routes
+        Route::get('/', [GardenLocationController::class, 'index'])->name('index');
 
         // Create, update, and delete routes
         Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
@@ -90,6 +96,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plan
 
     Route::prefix('plant-status')->name('plant-status.')->group(function () {
         // List and show routes
+        Route::get('/', [PlantStatusController::class, 'index'])->name('index');
 
         // Create, update, and delete routes
         Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {

@@ -16,7 +16,9 @@ class GardenLocationController extends Controller
      */
     public function index()
     {
-        return view('plant::index');
+        $gardenLocations = GardenLocation::where('status', 1)->paginate(20);
+
+        return view('plant::gardenLocation.index', compact('gardenLocations'));
     }
 
     /**

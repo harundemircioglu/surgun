@@ -16,7 +16,9 @@ class PlantOriginController extends Controller
      */
     public function index()
     {
-        return view('plant::index');
+        $plantOrigins = PlantOrigin::where('status', 1)->paginate(20);
+
+        return view('plant::plantOrigin.index', compact('plantOrigins'));
     }
 
     /**
