@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Modules\Auth\App\Http\Requests\Store\UserRequest;
+use Modules\Auth\App\Models\User;
 
 class UserController extends Controller
 {
@@ -15,7 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('auth::index');
+        $users = User::where('is_active', true)
+            ->whereIn('role', [2, 3])
+            ->paginate(20);
+
+        return view('auth::user.index', compact('users'));
     }
 
     /**
@@ -31,7 +37,20 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        $user = new User();
+        $user->name = $data['name'];
+        $user->surname = $data['surname'];
+        $user->email = $data['email'];
+        $user->phone = $data['phone'];
+        $user->password = bcrypt(Str::random(8));
+        $user->role = $data['role'];
+        $user->syncRoles([$data['role']]);
+        $user->syncPermissions($data['permissions']);
+        $user->save();
+
+        return back()->with('success', 'User created successfully.');
     }
 
     /**
@@ -55,7 +74,24 @@ class UserController extends Controller
      */
     public function update(\Modules\Auth\App\Http\Requests\Update\UserRequest $request, $id): RedirectResponse
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return back()->with('error', 'User not found.');
+        }
+
+        $data = $request->validated();
+
+        $user->name = $data['name'];
+        $user->surname = $data['surname'];
+        $user->email = $data['email'];
+        $user->phone = $data['phone'];
+        $user->role = $data['role'];
+        $user->syncRoles([$data['role']]);
+        $user->syncPermissions($data['permissions']);
+        $user->save();
+
+        return back()->with('success', 'User updated successfully.');
     }
 
     /**
@@ -63,6 +99,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return back()->with('error', 'User not found.');
+        }
+
+        $user->delete();
+
+        return back()->with('success', 'User deleted successfully.');
     }
 }

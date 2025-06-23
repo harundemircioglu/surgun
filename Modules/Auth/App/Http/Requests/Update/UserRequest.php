@@ -17,8 +17,7 @@ class UserRequest extends FormRequest
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->id)],
             'phone' => ['required', 'string', 'max:10', Rule::unique('users', 'phone')->ignore($this->id)],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role_id' => ['required', Rule::exists('roles', 'id')],
+            'role' => ['required', Rule::exists('roles', 'id')],
             'permissions' => ['required', 'array'],
             'permissions.*' => ['required', Rule::exists('permissions', 'id')],
         ];
@@ -44,13 +43,8 @@ class UserRequest extends FormRequest
             'phone.max' => 'The phone number must not exceed 10 characters.',
             'phone.unique' => 'This phone number is already in use.',
 
-            'password.required' => 'The password field is required.',
-            'password.string' => 'The password must be a valid string.',
-            'password.min' => 'The password must be at least 8 characters.',
-            'password.confirmed' => 'The password confirmation does not match.',
-
-            'role_id.required' => 'The role field is required.',
-            'role_id.exists' => 'The selected role is invalid.',
+            'role.required' => 'The role field is required.',
+            'role.exists' => 'The selected role is invalid.',
 
             'permissions.required' => 'The permissions field is required.',
             'permissions.array' => 'The permissions must be an array.',
