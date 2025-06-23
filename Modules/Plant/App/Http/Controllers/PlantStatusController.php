@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Plant\App\Http\Requests\Create\PlantStatusRequest;
+use Modules\Plant\App\Models\PlantStatus;
 
 class PlantStatusController extends Controller
 {
@@ -31,7 +32,10 @@ class PlantStatusController extends Controller
      */
     public function store(PlantStatusRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        PlantStatus::create($data);
+
+        return back()->with(['success' => 'Plant status created successfully.']);
     }
 
     /**
@@ -55,7 +59,16 @@ class PlantStatusController extends Controller
      */
     public function update(\Modules\Plant\App\Http\Requests\Update\PlantStatusRequest $request, $id): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $plantStatus = PlantStatus::find($id);
+
+        if (!$plantStatus) {
+            return back()->with(['error' => 'Plant status not found.']);
+        }
+
+        $plantStatus->update($data);
+
+        return back()->with(['success' => 'Plant status updated successfully.']);
     }
 
     /**
@@ -63,6 +76,14 @@ class PlantStatusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $plantStatus = PlantStatus::find($id);
+
+        if (!$plantStatus) {
+            return back()->with(['error' => 'Plant status not found.']);
+        }
+
+        $plantStatus->delete();
+
+        return back()->with(['success' => 'Plant status deleted successfully.']);
     }
 }
