@@ -3,6 +3,7 @@
 namespace Modules\Plant\App\Http\Requests\Update;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AccessionNotebookRequest extends FormRequest
 {
