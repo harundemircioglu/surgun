@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Plant\App\Http\Requests\Create\SeedBankRequest;
+use Modules\Plant\App\Models\SeedBank;
 
 class SeedBankController extends Controller
 {
@@ -31,7 +32,10 @@ class SeedBankController extends Controller
      */
     public function store(SeedBankRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        SeedBank::create($data);
+
+        return redirect()->back()->with(['success' => 'Seed Bank created successfully']);
     }
 
     /**
@@ -55,7 +59,16 @@ class SeedBankController extends Controller
      */
     public function update(\Modules\Plant\App\Http\Requests\Update\SeedBankRequest $request, $id): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $seedBank = SeedBank::find($id);
+
+        if (!$seedBank) {
+            return redirect()->back()->with(['error' => 'Seed Bank not found']);
+        }
+
+        $seedBank->update($data);
+
+        return redirect()->back()->with(['success' => 'Seed Bank updated successfully']);
     }
 
     /**
@@ -63,6 +76,14 @@ class SeedBankController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $seedBank = SeedBank::find($id);
+
+        if (!$seedBank) {
+            return redirect()->back()->with(['error' => 'Seed Bank not found']);
+        }
+
+        $seedBank->delete();
+
+        return redirect()->back()->with(['success' => 'Seed Bank deleted successfully']);
     }
 }

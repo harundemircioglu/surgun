@@ -3,6 +3,7 @@
 namespace Modules\Plant\App\Http\Requests\Create;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SeedBankRequest extends FormRequest
 {
@@ -12,13 +13,24 @@ class SeedBankRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'accesion_notebook_id' => ['required', Rule::exists('accesion_notebooks', 'id')],
+            'quantity' => ['required', 'json'],
+            'seed_cabinet_id' => ['required', Rule::exists('seed_cabinets', 'id')],
         ];
     }
 
     public function messages(): array
     {
-        return [];
+        return [
+            'accesion_notebook_id.required' => 'The accession notebook field is required.',
+            'accesion_notebook_id.exists' => 'The selected accession notebook is invalid.',
+
+            'quantity.required' => 'The quantity field is required.',
+            'quantity.json' => 'The quantity must be a valid JSON string.',
+
+            'seed_cabinet_id.required' => 'The seed cabinet field is required.',
+            'seed_cabinet_id.exists' => 'The selected seed cabinet is invalid.',
+        ];
     }
 
     /**
