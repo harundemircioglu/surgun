@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Role\App\Http\Controllers\RoleController;
+use Modules\Role\App\Http\Controllers\UserPermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,18 @@ use Modules\Role\App\Http\Controllers\RoleController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('role', RoleController::class)->names('role');
+Route::middleware(['web', 'auth'])->prefix('role')->name('role.')->group(function () {
+    // role routes
+
+    Route::prefix('permission')->name('permission.')->group(function () {
+        // permission routes
+
+        Route::prefix('user-permission')->name('user-permission.')->group(function () {
+            // user permission routes
+
+            Route::middleware(['can:can_update_data'])->group(function () {
+                Route::post('/update/{id}', [UserPermissionController::class, 'update'])->name('update');
+            });
+        });
+    });
 });
