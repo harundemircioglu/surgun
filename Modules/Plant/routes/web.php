@@ -1,9 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Plant\App\Http\Controllers\AccessionNotebookController;
+use Modules\Plant\App\Http\Controllers\GardenLocationController;
 use Modules\Plant\App\Http\Controllers\PlantController;
 use Modules\Plant\App\Http\Controllers\PlantMaterialController;
 use Modules\Plant\App\Http\Controllers\PlantOriginController;
+use Modules\Plant\App\Http\Controllers\PlantStatusController;
+use Modules\Plant\App\Http\Controllers\SeedBankController;
+use Modules\Plant\App\Http\Controllers\SeedCabinetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,34 +23,79 @@ use Modules\Plant\App\Http\Controllers\PlantOriginController;
 
 Route::middleware(['web', 'auth', 'role:super-admin|admin|guest'])->prefix('plant')->name('plant.')->group(function () {
     Route::prefix('material')->name('material.')->group(function () {
-        Route::post('store', [PlantMaterialController::class, 'store'])->name('store')->middleware('can:can_create_data');
-        Route::post('update', [PlantMaterialController::class, 'update'])->name('update')->middleware('can:can_update_data');
-        Route::post('destroy', [PlantMaterialController::class, 'destroy'])->name('destroy')->middleware(['can:can_delete_data']);
+        // List and show routes
+
+        // Create, update, and delete routes
+        Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
+            Route::post('store', [PlantMaterialController::class, 'store'])->name('store');
+            Route::post('update', [PlantMaterialController::class, 'update'])->name('update');
+            Route::post('destroy', [PlantMaterialController::class, 'destroy'])->name('destroy');
+        });
     });
 
     Route::prefix('origin')->name('origin.')->group(function () {
-        Route::post('store', [PlantOriginController::class, 'store'])->name('store')->middleware('can:can_create_data');
-        Route::post('update', [PlantOriginController::class, 'update'])->name('update')->middleware('can:can_update_data');
-        Route::post('destroy', [PlantOriginController::class, 'destroy'])->name('destroy')->middleware(['can:can_delete_data']);
+        // List and show routes
+
+        // Create, update, and delete routes
+        Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
+            Route::post('store', [PlantOriginController::class, 'store'])->name('store');
+            Route::post('update', [PlantOriginController::class, 'update'])->name('update');
+            Route::post('destroy', [PlantOriginController::class, 'destroy'])->name('destroy');
+        });
     });
 
     Route::prefix('accession-notebook')->name('accession-notebook.')->group(function () {
+        // List and show routes
 
+        // Create, update, and delete routes
+        Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
+            Route::post('store', [AccessionNotebookController::class, 'store'])->name('store');
+            Route::post('update', [AccessionNotebookController::class, 'update'])->name('update');
+            Route::post('destroy', [AccessionNotebookController::class, 'destroy'])->name('destroy');
+        });
     });
 
     Route::prefix('seed-cabinet')->name('seed-cabinet.')->group(function () {
+        // List and show routes
 
+        // Create, update, and delete routes
+        Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
+            Route::post('store', [SeedCabinetController::class, 'store'])->name('store');
+            Route::post('update', [SeedCabinetController::class, 'update'])->name('update');
+            Route::post('destroy', [SeedCabinetController::class, 'destroy'])->name('destroy');
+        });
     });
 
     Route::prefix('seed-bank')->name('seed-bank.')->group(function () {
+        // List and show routes
 
+        // Create, update, and delete routes
+        Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
+            Route::post('store', [SeedBankController::class, 'store'])->name('store');
+            Route::post('update', [SeedBankController::class, 'update'])->name('update');
+            Route::post('destroy', [SeedBankController::class, 'destroy'])->name('destroy');
+        });
     });
 
     Route::prefix('garden-location')->name('garden-location.')->group(function () {
+        // List and show routes
 
+        // Create, update, and delete routes
+        Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
+            Route::post('store', [GardenLocationController::class, 'store'])->name('store');
+            Route::post('update', [GardenLocationController::class, 'update'])->name('update');
+            Route::post('destroy', [GardenLocationController::class, 'destroy'])->name('destroy');
+        });
     });
 
     Route::prefix('plant-status')->name('plant-status.')->group(function () {
+        // List and show routes
 
+        // Create, update, and delete routes
+        Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
+            Route::post('store', [PlantStatusController::class, 'store'])->name('store');
+            Route::post('update', [PlantStatusController::class, 'update'])->name('update');
+            Route::post('destroy', [PlantStatusController::class, 'destroy'])->name('destroy');
+        });
     });
 });
