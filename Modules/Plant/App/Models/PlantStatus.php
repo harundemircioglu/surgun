@@ -7,4 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class PlantStatus extends Model
 {
     protected $guarded = [];
+
+    public function accesionNotebook()
+    {
+        return $this->belongsTo(AccesionNotebook::class, 'accesion_notebook_id', 'id');
+    }
+
+    public function gardeLocation()
+    {
+        return $this->belongsTo(GardenLocation::class, 'garden_location_id', 'id');
+    }
 }
