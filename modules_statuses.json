@@ -1,7 +1,6 @@
 {
     "Role": true,
     "Auth": true,
-    "Notification": true,
     "Dashboard": true,
     "Plant": true
 }

@@ -28,4 +28,9 @@
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-auth', 'resources/assets/js/app.js') }} --}}
     @vite('resources/js/app.js')
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    @stack('javascripts')
 </body>

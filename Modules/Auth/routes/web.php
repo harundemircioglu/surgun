@@ -18,12 +18,17 @@ use Modules\Auth\App\Http\Controllers\UserController;
 Route::get('/', [AuthController::class, 'loginIndex'])->name('auth.loginIndex');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
-Route::middleware(['web', 'auth'])->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::middleware(['web', 'auth'])->name('auth.')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // change first password
-    Route::get('/change-first-password', [AuthController::class, 'changeFirstPasswordIndex'])->name('auth.changeFirstPasswordIndex');
-    Route::post('/change-first-password', [AuthController::class, 'changeFirstPassword'])->name('auth.changeFirstPassword');
+    Route::get('/change-first-password', [AuthController::class, 'changeFirstPasswordIndex'])->name('changeFirstPasswordIndex');
+    Route::post('/change-first-password', [AuthController::class, 'changeFirstPassword'])->name('changeFirstPassword');
+
+    // two step verification
+    Route::get('/two-step-verification', [AuthController::class, 'twoStepVerificationIndex'])->name('twoStepVerificationIndex');
+    Route::post('/send-two-step-verification-code', [AuthController::class, 'sendTwoStepVerificationCode'])->name('sendTwoStepVerificationCode');
+    Route::post('/verify-two-step-verification-code', [AuthController::class, 'verifyTwoStepVerificationCode'])->name('verifyTwoStepVerificationCode');
 });
 
 Route::middleware(['auth', 'web'])->prefix('user')->name('user.')->group(function () {
