@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'Super Admin',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
+            'role' => 1,
         ])->assignRole('super-admin')->givePermissionTo(['can_create_data', 'can_update_data', 'can_delete_data']);
 
         User::firstOrCreate([
@@ -26,6 +27,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
+            'role' => 2,
         ])->assignRole('admin')->givePermissionTo(['can_create_data', 'can_update_data', 'can_conditional_delete_data']);
 
         User::firstOrCreate([
@@ -34,6 +36,7 @@ class UserSeeder extends Seeder
             'name' => 'Guest',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
+            'role' => 3,
         ])->assignRole('guest')->givePermissionTo(['can_create_data', 'can_update_data', 'can_conditional_delete_data']);
     }
 }

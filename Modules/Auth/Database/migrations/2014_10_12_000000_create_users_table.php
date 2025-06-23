@@ -20,6 +20,9 @@ return new class extends Migration {
             $table->string('password');
             $table->boolean('two_step_verification')->nullable()->default(false);
             $table->string('collector_code')->nullable();
+            $table->enum('role', [1, 2, 3])->default(3)->nullable();
+            $table->boolean('is_active')->default(true)->nullable();
+            $table->tinyInteger('status')->default(1)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

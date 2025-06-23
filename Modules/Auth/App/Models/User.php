@@ -23,6 +23,8 @@ class User extends Authenticatable
 
     protected $guard_name = 'web';
 
+    // role => 1:super-admin, 2:admin, 3:guest
+
     /**
      * The attributes that should be hidden for serialization.
      *

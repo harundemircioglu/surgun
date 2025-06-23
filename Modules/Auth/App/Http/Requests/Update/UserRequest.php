@@ -1,0 +1,69 @@
+<?php
+
+namespace Modules\Auth\App\Http\Requests\Update;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
+class UserRequest extends FormRequest
+{
+    /**
+     * Get the validation rules that apply to the request.
+     */
+    public function rules(): array
+    {
+        return [
+            'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->id)],
+            'phone' => ['required', 'string', 'max:10', Rule::unique('users', 'phone')->ignore($this->id)],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role_id' => ['required', Rule::exists('roles', 'id')],
+            'permissions' => ['required', 'array'],
+            'permissions.*' => ['required', Rule::exists('permissions', 'id')],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'The name field is required.',
+            'name.string' => 'The name must be a valid string.',
+            'name.max' => 'The name must not exceed 255 characters.',
+
+            'surname.required' => 'The surname field is required.',
+            'surname.string' => 'The surname must be a valid string.',
+            'surname.max' => 'The surname must not exceed 255 characters.',
+
+            'email.required' => 'The email field is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.unique' => 'This email is already in use.',
+
+            'phone.required' => 'The phone number field is required.',
+            'phone.string' => 'The phone number must be a valid string.',
+            'phone.max' => 'The phone number must not exceed 10 characters.',
+            'phone.unique' => 'This phone number is already in use.',
+
+            'password.required' => 'The password field is required.',
+            'password.string' => 'The password must be a valid string.',
+            'password.min' => 'The password must be at least 8 characters.',
+            'password.confirmed' => 'The password confirmation does not match.',
+
+            'role_id.required' => 'The role field is required.',
+            'role_id.exists' => 'The selected role is invalid.',
+
+            'permissions.required' => 'The permissions field is required.',
+            'permissions.array' => 'The permissions must be an array.',
+            'permissions.*.required' => 'Each permission is required.',
+            'permissions.*.exists' => 'One or more selected permissions are invalid.',
+        ];
+    }
+
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+}
