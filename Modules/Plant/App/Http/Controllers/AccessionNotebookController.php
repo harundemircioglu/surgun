@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Plant\App\Http\Requests\Create\AccessionNotebookRequest;
+use Modules\Plant\App\Models\AccesionNotebook;
 
 class AccessionNotebookController extends Controller
 {
@@ -31,7 +32,11 @@ class AccessionNotebookController extends Controller
      */
     public function store(AccessionNotebookRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $data['accesion_number'] = now()->toDateString() . '-' . uniqid();
+        AccesionNotebook::create($data);
+
+        return redirect()->back()->with(['success' => 'Accession Notebook created successfully']);
     }
 
     /**
@@ -55,7 +60,16 @@ class AccessionNotebookController extends Controller
      */
     public function update(\Modules\Plant\App\Http\Requests\Update\AccessionNotebookRequest $request, $id): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $accesionNotebook = AccesionNotebook::find($id);
+
+        if (!$accesionNotebook) {
+            return redirect()->back()->with(['error' => 'Accession Notebook not found']);
+        }
+
+        $accesionNotebook->update($data);
+
+        return redirect()->back()->with(['success' => 'Accession Notebook updated successfully']);
     }
 
     /**
@@ -63,6 +77,14 @@ class AccessionNotebookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $accesionNotebook = AccesionNotebook::find($id);
+
+        if (!$accesionNotebook) {
+            return redirect()->back()->with(['error' => 'Accession Notebook not found']);
+        }
+
+        $accesionNotebook->delete();
+
+        return redirect()->back()->with(['success' => 'Accession Notebook deleted successfully']);
     }
 }
