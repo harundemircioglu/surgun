@@ -19,6 +19,7 @@
 
     {{-- Vite CSS --}}
     {{-- {{ module_vite('build-role', 'resources/assets/sass/app.scss') }} --}}
+    @vite('resources/css/app.css')
 </head>
 
 <body>
@@ -31,4 +32,6 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     @stack('javascripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
