@@ -31,6 +31,7 @@
     "homepage": "https://github.com/harundemircioglu/surgun#readme",
     "dependencies": {
         "flowbite": "^3.1.2",
-        "tailwindcss": "^4.1.10"
+        "tailwindcss": "^4.1.10",
+        "toastr": "^2.1.4"
     }
 }

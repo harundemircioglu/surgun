@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
     @yield('content')
 
     {{-- Vite JS --}}
@@ -34,4 +34,18 @@
     @stack('javascripts')
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    @if (session('success'))
+        <script>
+            toastr.success('{{ session('success') }}');
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ session('error') }}');
+        </script>
+    @endif
+
+    @vite('resources/js/app.js')
 </body>
