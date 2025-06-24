@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Modules\Auth\App\Emails\TwoStepVerification;
 use Modules\Auth\App\Http\Requests\ChangeFirstPasswordRequest;
@@ -54,10 +55,12 @@ class AuthController extends Controller
 
     public function changeFirstPassword(ChangeFirstPasswordRequest $request)
     {
-        $user = User::find(auth()->id());
-        $user->password = Hash::make($request->password);
-        $user->is_changed_first_password = true;
-        $user->save();
+        DB::transaction(function () use ($request) {
+            $user = auth()->user();
+            $user->password = Hash::make($request->password);
+            $user->is_changed_first_password = true;
+            $user->save();
+        });
 
         return $this->logout($request);
     }
@@ -84,13 +87,15 @@ class AuthController extends Controller
 
         $code = generateTwoFactorCode();
 
-        $twoFactorCode = TwoFactorCode::create([
-            'user_id' => auth()->id(),
-            'code' => $code,
-            'ip_address' => request()->ip(),
-            'expires_at' => now()->addMinutes(3),
-            'user_agent' => request()->userAgent(),
-        ]);
+        DB::transaction(function () use ($code) {
+            TwoFactorCode::create([
+                'user_id' => auth()->id(),
+                'code' => $code,
+                'ip_address' => request()->ip(),
+                'expires_at' => now()->addMinutes(3),
+                'user_agent' => request()->userAgent(),
+            ]);
+        });
 
         try {
             Mail::to($user->email)->send(new TwoStepVerification($code));
@@ -125,9 +130,11 @@ class AuthController extends Controller
             ], 422);
         }
 
-        $twoFactorCode->update([
-            'verified_at' => now(),
-        ]);
+        DB::transaction(function () use ($twoFactorCode) {
+            $twoFactorCode->update([
+                'verified_at' => now(),
+            ]);
+        });
 
         return redirect()->route('dashboard.index');
     }

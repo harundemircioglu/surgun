@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\Plant\App\Http\Requests\Create\AccessionNotebookRequest;
 use Modules\Plant\App\Models\AccesionNotebook;
 
@@ -44,7 +45,10 @@ class AccessionNotebookController extends Controller
     {
         $data = $request->validated();
         $data['accesion_number'] = now()->toDateString() . '-' . uniqid();
-        AccesionNotebook::create($data);
+
+        DB::transaction(function () use ($data) {
+            AccesionNotebook::create($data);
+        });
 
         return redirect()->back()->with(['success' => 'Accession Notebook created successfully']);
     }
@@ -77,7 +81,9 @@ class AccessionNotebookController extends Controller
             return redirect()->back()->with(['error' => 'Accession Notebook not found']);
         }
 
-        $accesionNotebook->update($data);
+        DB::transaction(function () use ($accesionNotebook, $data) {
+            $accesionNotebook->update($data);
+        });
 
         return redirect()->back()->with(['success' => 'Accession Notebook updated successfully']);
     }
@@ -93,7 +99,9 @@ class AccessionNotebookController extends Controller
             return redirect()->back()->with(['error' => 'Accession Notebook not found']);
         }
 
-        $accesionNotebook->delete();
+        DB::transaction(function () use ($accesionNotebook) {
+            $accesionNotebook->delete();
+        });
 
         return redirect()->back()->with(['success' => 'Accession Notebook deleted successfully']);
     }
