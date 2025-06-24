@@ -25,7 +25,11 @@
 <body>
     @include('dashboard::layouts.partials.sidebar')
 
-    @yield('content')
+    <div class="p-2 sm:ml-64">
+        <div class="p-2 mt-14">
+            @yield('content')
+        </div>
+    </div>
 
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-dashboard', 'resources/assets/js/app.js') }} --}}

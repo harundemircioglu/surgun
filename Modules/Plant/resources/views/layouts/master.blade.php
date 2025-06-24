@@ -23,7 +23,13 @@
 </head>
 
 <body>
-    @yield('content')
+    @include('dashboard::layouts.partials.sidebar')
+
+    <div class="p-2 sm:ml-64">
+        <div class="p-2 mt-14">
+            @yield('content')
+        </div>
+    </div>
 
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-plant', 'resources/assets/js/app.js') }} --}}
