@@ -31,7 +31,7 @@ Route::middleware(['web', 'auth'])->name('auth.')->group(function () {
     Route::post('/verify-two-step-verification-code', [AuthController::class, 'verifyTwoStepVerificationCode'])->name('verifyTwoStepVerificationCode');
 });
 
-Route::middleware(['auth', 'web'])->prefix('user')->name('user.')->group(function () {
+Route::middleware(['auth', 'web', 'check_first_password_change', 'check_two_step_verification'])->prefix('user')->name('user.')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('index');
 
     Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
