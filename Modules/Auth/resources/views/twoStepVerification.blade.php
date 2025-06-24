@@ -26,10 +26,10 @@
                 type: "POST",
                 url: "{{ route('auth.sendTwoStepVerificationCode') }}",
                 success: function(response) {
-                    console.log(response);
+                    toastr.success(response.success);
                 },
                 error: function(response) {
-                    console.log(response);
+                    toastr.error(response.responseJSON.error);
                 }
             });
 
