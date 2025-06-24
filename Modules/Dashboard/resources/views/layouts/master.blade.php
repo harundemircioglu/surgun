@@ -23,7 +23,11 @@
 </head>
 
 <body>
-    @yield('content')
+    @include('dashboard::layouts.partials.sidebar')
+
+    <div class="flex-1 ml-64 p-6">
+        @yield('content')
+    </div>
 
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-dashboard', 'resources/assets/js/app.js') }} --}}
