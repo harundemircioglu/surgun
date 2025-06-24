@@ -3,6 +3,7 @@
 namespace Modules\Auth\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -72,15 +73,13 @@ class AuthController extends Controller
 
         $twoFactorCode = TwoFactorCode::where('user_id', $user->id)
             ->whereNull('verified_at')
-            ->where('expires_at', '>', now()->subMinutes(3))
             ->latest()
             ->first();
 
-        if ($twoFactorCode) {
+        if ($twoFactorCode && Carbon::parse($twoFactorCode->expires_at)->isFuture()) {
             return response()->json([
-                'status' => 0,
-                'message' => 'A code has already been sent.'
-            ], 400);
+                'error' => 'A code has already been sent.'
+            ], 422);
         }
 
         $code = generateTwoFactorCode();
@@ -97,13 +96,11 @@ class AuthController extends Controller
             Mail::to($user->email)->send(new TwoStepVerification($code));
 
             return response()->json([
-                'status' => 1,
-                'message' => 'A verification code has been sent to your email.'
-            ]);
+                'success' => 'A verification code has been sent to your email.'
+            ], 200);
         } catch (\Throwable $th) {
             return response()->json([
-                'status' => 0,
-                'message' => 'Failed to send verification code. Please try again later.'
+                'error' => 'Failed to send verification code. Please try again later.'
             ], 500);
         }
     }
@@ -119,14 +116,13 @@ class AuthController extends Controller
         $twoFactorCode = TwoFactorCode::where('user_id', $user->id)
             ->where('code', $request->code)
             ->whereNull('verified_at')
-            ->where('expires_at', '>', now())
+            ->latest()
             ->first();
 
-        if (!$twoFactorCode) {
+        if ((!$twoFactorCode) || ($twoFactorCode && Carbon::parse($twoFactorCode->expires_at)->isPast())) {
             return response()->json([
-                'status' => 0,
-                'message' => 'Invalid or expired code.'
-            ], 400);
+                'error' => 'Invalid or expired code.'
+            ], 422);
         }
 
         $twoFactorCode->update([
