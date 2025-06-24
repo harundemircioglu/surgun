@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
+use Mail;
+use Modules\Auth\App\Emails\TemporaryPassword;
 use Modules\Auth\App\Http\Requests\Store\UserRequest;
 use Modules\Auth\App\Models\User;
 
@@ -38,17 +40,24 @@ class UserController extends Controller
     public function store(UserRequest $request): RedirectResponse
     {
         $data = $request->validated();
+        $password = Str::random(8);
 
         $user = new User();
         $user->name = $data['name'];
         $user->surname = $data['surname'];
         $user->email = $data['email'];
         $user->phone = $data['phone'];
-        $user->password = bcrypt(Str::random(8));
+        $user->password = bcrypt($password);
         $user->role = $data['role'];
         $user->syncRoles([$data['role']]);
         $user->syncPermissions($data['permissions']);
         $user->save();
+
+        try {
+            Mail::to($user->email)->send(new TemporaryPassword($password));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
         return back()->with('success', 'User created successfully.');
     }
