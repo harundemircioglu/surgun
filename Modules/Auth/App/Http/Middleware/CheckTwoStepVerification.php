@@ -2,6 +2,7 @@
 
 namespace Modules\Auth\App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 use Modules\Auth\App\Models\TwoFactorCode;
@@ -17,13 +18,12 @@ class CheckTwoStepVerification
         $user = auth()->user();
 
         if ($user->two_step_verification == true) {
-            $code = TwoFactorCode::where('user_id', $user->id)
-                ->whereNull('verified_at')
-                ->where('expires_at', '>', now())
+            $twoStepVerification = TwoFactorCode::where('user_id', $user->id)
+                ->whereNotNull('verified_at')
                 ->latest()
                 ->first();
 
-            if ($code) {
+            if ((!$twoStepVerification) || ($twoStepVerification && Carbon::parse($twoStepVerification->verified_at)->addHours(2)->isPast())) {
                 return redirect()->route('auth.twoStepVerificationIndex');
             }
         }
