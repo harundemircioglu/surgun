@@ -5,8 +5,8 @@
         @csrf
         <input type="text" name="code">
         @error('code')
-        <div style="color: red;">{{ $message }}</div>
-    @enderror
+            <div style="color: red;">{{ $message }}</div>
+        @enderror
         <button>Verify</button>
     </form>
 
@@ -26,10 +26,10 @@
                 type: "POST",
                 url: "{{ route('auth.sendTwoStepVerificationCode') }}",
                 success: function(response) {
-                    toastr.success(response.success);
+                    console.log(response);
                 },
                 error: function(response) {
-                    toastr.error(response.responseJSON.error);
+                    console.log(response);
                 }
             });
 
