@@ -22,7 +22,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="bg-gray-100">
     @include('dashboard::layouts.partials.sidebar')
 
     <div class="p-2 sm:ml-64">

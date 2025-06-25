@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'role' => 2,
             'is_changed_first_password' => true,
-        ])->assignRole('admin')->givePermissionTo(['can_create_data', 'can_update_data', 'can_conditional_delete_data']);
+        ])->assignRole('admin')->givePermissionTo(['can_create_data', 'can_update_data', 'can_delete_data']);
 
         User::firstOrCreate([
             'email' => 'guest@surgun.com',
@@ -39,6 +39,6 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'role' => 3,
-        ])->assignRole('guest')->givePermissionTo(['can_create_data', 'can_update_data', 'can_conditional_delete_data']);
+        ])->assignRole('guest')->givePermissionTo(['can_create_data', 'can_update_data', 'can_delete_data']);
     }
 }

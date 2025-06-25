@@ -12,7 +12,7 @@ class PlantMaterialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:table,plant_materials,name'],
+            'name' => ['required', 'string', 'max:255', 'unique:plant_materials,name'],
         ];
     }
 

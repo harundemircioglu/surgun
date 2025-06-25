@@ -1,7 +1,7 @@
 @extends('auth::layouts.master')
 
 @section('content')
-    <div class="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="flex justify-center items-center min-h-screen">
         <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-6 text-center">
                 Change Temporary Password
