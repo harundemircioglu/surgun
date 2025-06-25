@@ -14,9 +14,9 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
+            'surname' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->id)],
-            'phone' => ['required', 'string', 'max:10', Rule::unique('users', 'phone')->ignore($this->id)],
+            'phone' => ['nullable', 'string', 'max:10', Rule::unique('users', 'phone')->ignore($this->id)],
             'role' => ['required', Rule::exists('roles', 'id')],
             'permissions' => ['required', 'array'],
             'permissions.*' => ['required', Rule::exists('permissions', 'id')],
@@ -30,7 +30,6 @@ class UserRequest extends FormRequest
             'name.string' => 'The name must be a valid string.',
             'name.max' => 'The name must not exceed 255 characters.',
 
-            'surname.required' => 'The surname field is required.',
             'surname.string' => 'The surname must be a valid string.',
             'surname.max' => 'The surname must not exceed 255 characters.',
 
@@ -38,7 +37,6 @@ class UserRequest extends FormRequest
             'email.email' => 'Please enter a valid email address.',
             'email.unique' => 'This email is already in use.',
 
-            'phone.required' => 'The phone number field is required.',
             'phone.string' => 'The phone number must be a valid string.',
             'phone.max' => 'The phone number must not exceed 10 characters.',
             'phone.unique' => 'This phone number is already in use.',

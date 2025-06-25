@@ -11,6 +11,8 @@ use Mail;
 use Modules\Auth\App\Emails\TemporaryPassword;
 use Modules\Auth\App\Http\Requests\Store\UserRequest;
 use Modules\Auth\App\Models\User;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -21,9 +23,17 @@ class UserController extends Controller
     {
         $users = User::where('is_active', true)
             ->whereIn('role', [2, 3])
-            ->paginate(20);
+            ->with(['roles', 'permissions'])
+            ->paginate(10);
 
-        return view('auth::user.index', compact('users'));
+        $roles = Role::select(['id', 'name', 'description'])
+            ->whereNot('name', 'super-admin')
+            ->get();
+
+        $permissions = Permission::select(['id', 'description'])
+            ->get();
+
+        return view('auth::user.index', compact('users', 'roles', 'permissions'));
     }
 
     /**
@@ -49,8 +59,8 @@ class UserController extends Controller
         $user->phone = $data['phone'];
         $user->password = bcrypt($password);
         $user->role = $data['role'];
-        $user->syncRoles([$data['role']]);
-        $user->syncPermissions($data['permissions']);
+        $user->assignRole(Role::find($data['role'])->name);
+        $user->givePermissionTo(Permission::whereIn('id', $data['permissions'])->pluck('name'));
         $user->save();
 
         try {
@@ -96,8 +106,8 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->phone = $data['phone'];
         $user->role = $data['role'];
-        $user->syncRoles([$data['role']]);
-        $user->syncPermissions($data['permissions']);
+        $user->syncRoles(Role::find($data['role'])->name);
+        $user->syncPermissions(Permission::whereIn('id', $data['permissions'])->pluck('name'));
         $user->save();
 
         return back()->with('success', 'User updated successfully.');

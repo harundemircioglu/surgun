@@ -13,7 +13,7 @@
                         </path>
                     </svg>
                 </button>
-                <a href="{{route('dashboard.index')}}" class="flex ms-2 md:me-24">
+                <a href="{{ route('dashboard.index') }}" class="flex ms-2 md:me-24">
                     <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
                     <span
                         class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Sürgün</span>
@@ -83,6 +83,18 @@
                             d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                     </svg>
                     <span class="ms-3">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5.5 20a8.38 8.38 0 0113 0M12 12a4 4 0 100-8 4 4 0 000 8z" />
+                    </svg>
+
+                    <span class="flex-1 ms-3 whitespace-nowrap">Kullanıcı İşlemleri</span>
                 </a>
             </li>
             <li>
