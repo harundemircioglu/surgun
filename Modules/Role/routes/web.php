@@ -24,9 +24,7 @@ Route::middleware(['web', 'auth'])->prefix('role')->name('role.')->group(functio
         Route::prefix('user-permission')->name('user-permission.')->group(function () {
             // user permission routes
 
-            Route::middleware(['can:can_update_data'])->group(function () {
-                Route::post('/update/{id}', [UserPermissionController::class, 'update'])->name('update');
-            });
+            Route::post('/update/{id}', [UserPermissionController::class, 'update'])->name('update')->middleware('can:can_update_data');
         });
     });
 });

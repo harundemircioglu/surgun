@@ -34,9 +34,7 @@ Route::middleware(['web', 'auth'])->name('auth.')->group(function () {
 Route::middleware(['auth', 'web', 'check_first_password_change', 'check_two_step_verification'])->prefix('user')->name('user.')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('index');
 
-    Route::middleware(['can:can_create_data', 'can:can_update_data', 'can:can_delete_data'])->group(function () {
-        Route::post('/store', [UserController::class, 'store'])->name('store');
-        Route::post('/update/{id}', [UserController::class, 'update'])->name('update');
-        Route::post('/destroy/{id}', [UserController::class, 'destroy'])->name('destroy');
-    });
+    Route::post('/store', [UserController::class, 'store'])->name('store')->middleware('can:can_create_data');
+    Route::post('/update/{id}', [UserController::class, 'update'])->name('update')->middleware('can:can_update_data');
+    Route::post('/destroy/{id}', [UserController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
 });
