@@ -3,12 +3,15 @@
 namespace Modules\Plant\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Modules\Plant\App\Http\Requests\Create\AccessionNotebookRequest;
 use Modules\Plant\App\Models\AccesionNotebook;
+use Modules\Plant\App\Models\PlantMaterial;
+use Modules\Plant\App\Models\PlantOrigin;
 
 class AccessionNotebookController extends Controller
 {
@@ -27,7 +30,11 @@ class AccessionNotebookController extends Controller
             )
             ->paginate(20);
 
-        return view('plant::accesionNotebook.index', compact('accesionNotebooks'));
+        $plantMaterials = PlantMaterial::where('status', 1)->get();
+
+        $plantOrigins = PlantOrigin::where('status', 1)->get();
+
+        return view('plant::accesionNotebook.index', compact('accesionNotebooks', 'plantMaterials', 'plantOrigins'));
     }
 
     /**
@@ -44,7 +51,8 @@ class AccessionNotebookController extends Controller
     public function store(AccessionNotebookRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $data['accesion_number'] = now()->toDateString() . '-' . uniqid();
+        $data['accesion_number'] = Carbon::now()->format('Y') . '-' . uniqid();
+        $data['user_id'] = auth()->id();
 
         DB::transaction(function () use ($data) {
             AccesionNotebook::create($data);

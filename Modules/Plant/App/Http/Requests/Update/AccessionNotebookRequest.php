@@ -19,7 +19,6 @@ class AccessionNotebookRequest extends FormRequest
             'location' => ['required', 'string', 'max:255'],
             'coordinate' => ['required', 'string', 'max:255'],
             'convening_date' => ['required', 'date'],
-            'user_id' => ['required', Rule::exists('users', 'id')],
         ];
     }
 
@@ -46,9 +45,6 @@ class AccessionNotebookRequest extends FormRequest
 
             'convening_date.required' => 'The convening date field is required.',
             'convening_date.date' => 'The convening date must be a valid date.',
-
-            'user_id.required' => 'The user field is required.',
-            'user_id.exists' => 'The selected user is invalid.',
         ];
     }
 
