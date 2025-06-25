@@ -7,7 +7,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Plant\App\Http\Requests\Create\SeedBankRequest;
+use Modules\Plant\App\Models\AccesionNotebook;
 use Modules\Plant\App\Models\SeedBank;
+use Modules\Plant\App\Models\SeedCabinet;
 
 class SeedBankController extends Controller
 {
@@ -25,7 +27,15 @@ class SeedBankController extends Controller
             )
             ->paginate(20);
 
-        return view('plant::seedBank.index', compact('seedBanks'));
+        $accesionNotebooks = AccesionNotebook::select(['id', 'plant_name'])
+            ->where('status', 1)
+            ->get();
+
+        $seedCabinets = SeedCabinet::select(['id', 'code'])
+            ->where('status', 1)
+            ->get();
+
+        return view('plant::seedBank.index', compact('seedBanks', 'accesionNotebooks', 'seedCabinets'));
     }
 
     /**
