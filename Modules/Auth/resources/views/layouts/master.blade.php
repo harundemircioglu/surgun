@@ -22,7 +22,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+<body>
     @yield('content')
 
     {{-- Vite JS --}}

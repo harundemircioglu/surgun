@@ -16,6 +16,9 @@
                     </label>
                     <input type="password" name="password" id="password" required
                         class="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    @error('password')
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
@@ -25,27 +28,15 @@
                     </label>
                     <input type="password" name="password_confirmation" id="password_confirmation" required
                         class="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    @error('password_confirmation')
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <button type="submit"
                     class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Save
                 </button>
-
-                @if ($errors->any())
-                    <div class="space-y-2">
-                        @foreach ($errors->all() as $error)
-                            <div class="flex items-center p-3 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-700 dark:text-red-400 dark:border-red-800"
-                                role="alert">
-                                <svg class="w-4 h-4 me-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M18 10A8 8 0 1 1 2 10a8 8 0 0 1 16 0Zm-7-4a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0V6Zm-1 8a1.25 1.25 0 1 0 0-2.5A1.25 1.25 0 0 0 10 14Z" />
-                                </svg>
-                                <span>{{ $error }}</span>
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
             </form>
 
             <form action="{{ route('auth.logout') }}" method="POST" class="mt-4 text-center">
