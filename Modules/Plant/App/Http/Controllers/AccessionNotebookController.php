@@ -30,9 +30,13 @@ class AccessionNotebookController extends Controller
             )
             ->paginate(20);
 
-        $plantMaterials = PlantMaterial::where('status', 1)->get();
+        $plantMaterials = PlantMaterial::select(['id', 'name'])
+            ->where('status', 1)
+            ->get();
 
-        $plantOrigins = PlantOrigin::where('status', 1)->get();
+        $plantOrigins = PlantOrigin::select(['id', 'name'])
+            ->where('status', 1)
+            ->get();
 
         return view('plant::accesionNotebook.index', compact('accesionNotebooks', 'plantMaterials', 'plantOrigins'));
     }
