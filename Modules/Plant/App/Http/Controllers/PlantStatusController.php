@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Plant\App\Http\Requests\Create\PlantStatusRequest;
+use Modules\Plant\App\Models\AccesionNotebook;
+use Modules\Plant\App\Models\GardenLocation;
 use Modules\Plant\App\Models\PlantStatus;
 
 class PlantStatusController extends Controller
@@ -23,7 +25,15 @@ class PlantStatusController extends Controller
             ])
             ->paginate(20);
 
-        return view('plant::plantStatus.index', compact('plantStatuses'));
+        $accesionNotebooks = AccesionNotebook::select(['id', 'plant_name'])
+            ->where('status', 1)
+            ->get();
+
+        $gardenLocations = GardenLocation::select(['id', 'code'])
+            ->where('status', 1)
+            ->get();
+
+        return view('plant::plantStatus.index', compact('plantStatuses', 'accesionNotebooks', 'gardenLocations'));
     }
 
     /**
