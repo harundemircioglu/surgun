@@ -20,6 +20,8 @@
     {{-- Vite CSS --}}
     {{-- {{ module_vite('build-role', 'resources/assets/sass/app.scss') }} --}}
     @vite('resources/css/app.css')
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
@@ -35,6 +37,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    @vite('resources/js/app.js')
+
     @if (session('success'))
         <script>
             toastr.success('{{ session('success') }}');
@@ -46,6 +52,4 @@
             toastr.error('{{ session('error') }}');
         </script>
     @endif
-
-    @vite('resources/js/app.js')
 </body>
