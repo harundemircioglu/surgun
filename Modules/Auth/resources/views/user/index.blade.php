@@ -150,9 +150,6 @@
                         Role
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Permissions
-                    </th>
-                    <th scope="col" class="px-6 py-3">
                         Action
                     </th>
                 </tr>
@@ -182,26 +179,6 @@
                                 '3' => 'Guest',
                                 default => '-',
                             } }}
-                        </td>
-                        <td class="px-6 py-4">
-                            <button data-popover-target="permission-popover-{{ $user->id }}" type="button"
-                                data-popover-trigger="click" data-popover-placement="right"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Yetkileri
-                                Gör</button>
-
-                            <div data-popover id="permission-popover-{{ $user->id }}" role="tooltip"
-                                class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                                <div
-                                    class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Yetkiler</h3>
-                                </div>
-                                @foreach ($user->permissions as $permission)
-                                    <div class="px-3 py-2">
-                                        <p>{{ $permission->description }}</p>
-                                    </div>
-                                @endforeach
-                                <div data-popper-arrow></div>
-                            </div>
                         </td>
                         <td class="flex items-center px-6 py-4">
                             {{-- edit product material --}}

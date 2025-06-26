@@ -23,6 +23,7 @@ class UserController extends Controller
     {
         $users = User::where('is_active', true)
             ->whereIn('role', [2, 3])
+            ->whereNot('id', auth()->id())
             ->with(['roles', 'permissions'])
             ->paginate(10);
 
