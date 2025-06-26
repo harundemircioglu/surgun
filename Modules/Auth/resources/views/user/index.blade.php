@@ -308,12 +308,14 @@
                                                             <li
                                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                                 <div class="flex items-center ps-3">
-                                                                    <input id="user-{{$user->id}}-permission-{{ $permission->id }}"
+                                                                    <input
+                                                                        id="user-{{ $user->id }}-permission-{{ $permission->id }}"
                                                                         type="checkbox" value="{{ $permission->id }}"
                                                                         name="permissions[]"
                                                                         @if (in_array($permission->id, $user->permissions->pluck('id')->toArray())) checked @endif
                                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                                    <label for="user-{{$user->id}}-permission-{{ $permission->id }}"
+                                                                    <label
+                                                                        for="user-{{ $user->id }}-permission-{{ $permission->id }}"
                                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $permission->description }}</label>
                                                                 </div>
                                                             </li>
@@ -390,5 +392,9 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <div class="mt-4">
+        {{ $users->links('vendor.pagination.tailwind') }}
     </div>
 @endsection

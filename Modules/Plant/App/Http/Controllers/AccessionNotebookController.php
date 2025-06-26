@@ -28,7 +28,7 @@ class AccessionNotebookController extends Controller
                     'origin',
                 ]
             )
-            ->paginate(20);
+            ->paginate(10);
 
         $plantMaterials = PlantMaterial::select(['id', 'name'])
             ->where('status', 1)

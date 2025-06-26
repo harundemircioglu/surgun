@@ -372,4 +372,8 @@
             </tbody>
         </table>
     </div>
+
+    <div class="mt-4">
+        {{ $accesionNotebooks->links('vendor.pagination.tailwind') }}
+    </div>
 @endsection

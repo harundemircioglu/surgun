@@ -23,7 +23,7 @@ class PlantStatusController extends Controller
                 'accesionNotebook',
                 'gardeLocation',
             ])
-            ->paginate(20);
+            ->paginate(10);
 
         $accesionNotebooks = AccesionNotebook::select(['id', 'plant_name'])
             ->where('status', 1)

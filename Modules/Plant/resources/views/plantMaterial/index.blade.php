@@ -200,4 +200,8 @@
             </tbody>
         </table>
     </div>
+
+    <div class="mt-4">
+        {{ $plantMaterials->links('vendor.pagination.tailwind') }}
+    </div>
 @endsection

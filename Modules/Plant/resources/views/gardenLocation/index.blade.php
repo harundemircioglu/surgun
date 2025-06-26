@@ -228,4 +228,8 @@
             </tbody>
         </table>
     </div>
+
+    <div class="mt-4">
+        {{ $gardenLocations->links('vendor.pagination.tailwind') }}
+    </div>
 @endsection
