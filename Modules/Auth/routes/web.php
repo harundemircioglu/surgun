@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Auth\App\Http\Controllers\AuthController;
+use Modules\Auth\App\Http\Controllers\ProfileController;
 use Modules\Auth\App\Http\Controllers\UserController;
 
 /*
@@ -37,4 +38,12 @@ Route::middleware(['auth', 'web', 'check_first_password_change', 'check_two_step
     Route::post('/store', [UserController::class, 'store'])->name('store')->middleware('can:can_create_data');
     Route::post('/update/{id}', [UserController::class, 'update'])->name('update')->middleware('can:can_update_data');
     Route::post('/destroy/{id}', [UserController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
+
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('index');
+
+        Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
+        Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('updatePassword');
+        Route::post('/change-two-step-verification-status', [ProfileController::class, 'changeTwoStepVerificationStatus'])->name('changeTwoStepVerificationStatus');
+    });
 });

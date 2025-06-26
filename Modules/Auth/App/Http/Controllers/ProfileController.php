@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
+use Modules\Auth\App\Http\Requests\Profile\UpdatePasswordRequest;
+use Modules\Auth\App\Http\Requests\Profile\UpdateProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -14,54 +17,48 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('auth::index');
+        $user = auth()->user();
+
+        return view('auth::user.profile', compact('user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function updateProfile(UpdateProfileRequest $request)
     {
-        return view('auth::create');
+        $user = auth()->user();
+        $data = $request->validated();
+
+        $user->update($data);
+        $user->save();
+
+        return back()->with('success', 'Profil bilgileri başarıyla güncellenlendi');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
+    public function updatePassword(UpdatePasswordRequest $request)
     {
-        //
+        $user = auth()->user();
+        $password = $request->password;
+
+        $user->password = Hash::make($password);
+        $user->save();
+
+        return back()->with('success', 'Şifre başarıyla güncellenlendi');
     }
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
+    public function changeTwoStepVerificationStatus()
     {
-        return view('auth::show');
-    }
+        $user = auth()->user();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('auth::edit');
-    }
+        $towStepVerification = true;
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        //
-    }
+        if ($user->two_step_verification) {
+            $towStepVerification = false;
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
+        $user->two_step_verification = $towStepVerification;
+        $user->save();
+
+        return response()->json([
+            'success' => 'İki adımlı doğrulama durumu başarıyla güncellendi',
+        ], 200);
     }
 }
