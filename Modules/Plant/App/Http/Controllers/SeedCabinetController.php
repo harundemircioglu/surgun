@@ -16,7 +16,14 @@ class SeedCabinetController extends Controller
      */
     public function index()
     {
-        $seedCabinets = SeedCabinet::where('status', 1)->paginate(20);
+        $search = request()->search ?? null;
+
+        $seedCabinets = SeedCabinet::where('status', 1)
+            ->when($search, function ($query) use ($search) {
+                $query->where('code', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+            })
+            ->paginate(20);
 
         return view('plant::seedCabinet.index', compact('seedCabinets'));
     }

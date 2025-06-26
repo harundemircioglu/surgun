@@ -18,7 +18,17 @@ class SeedBankController extends Controller
      */
     public function index()
     {
+        $search = request()->search ?? null;
+
         $seedBanks = SeedBank::where('status', 1)
+            ->when($search, function ($query) use ($search) {
+                $query->whereHas('accessionNotebook', function ($q) use ($search) {
+                    $q->where('plant_name', 'LIKE', "%{$search}%");
+                })
+                    ->orWhereHas('seedCabinet', function ($q) use ($search) {
+                        $q->where('code', 'LIKE', "%{$search}%");
+                    });
+            })
             ->with(
                 [
                     'accessionNotebook',

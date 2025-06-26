@@ -21,9 +21,19 @@ class UserController extends Controller
      */
     public function index()
     {
+        $search = request()->search ?? null;
+
         $users = User::where('is_active', true)
             ->whereIn('role', [2, 3])
             ->whereNot('id', auth()->id())
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('name', 'LIKE', "%{$search}%")
+                        ->orWhere('surname', 'LIKE', "%{$search}%")
+                        ->orWhere('email', 'LIKE', "%{$search}%")
+                        ->orWhere('phone', 'LIKE', "%{$search}%");
+                });
+            })
             ->with(['roles', 'permissions'])
             ->paginate(10);
 

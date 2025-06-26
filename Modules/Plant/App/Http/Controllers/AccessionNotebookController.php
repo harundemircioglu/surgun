@@ -20,7 +20,13 @@ class AccessionNotebookController extends Controller
      */
     public function index()
     {
+        $search = request()->search ?? null;
+
         $accesionNotebooks = AccesionNotebook::where('status', 1)
+            ->when($search, function ($query) use ($search) {
+                $query->where('accesion_number', 'LIKE', "%{$search}%")
+                    ->orWhere('plant_name', 'LIKE', "%{$search}%");
+            })
             ->with(
                 [
                     'user',

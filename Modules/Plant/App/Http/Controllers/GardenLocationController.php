@@ -17,7 +17,14 @@ class GardenLocationController extends Controller
      */
     public function index()
     {
-        $gardenLocations = GardenLocation::where('status', 1)->paginate(20);
+        $search = request()->search ?? null;
+
+        $gardenLocations = GardenLocation::where('status', 1)
+            ->when($search, function ($query) use ($search) {
+                $query->where('code', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+            })
+            ->paginate(20);
 
         return view('plant::gardenLocation.index', compact('gardenLocations'));
     }

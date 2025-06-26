@@ -16,7 +16,13 @@ class PlantMaterialController extends Controller
      */
     public function index()
     {
-        $plantMaterials = PlantMaterial::where('status', 1)->paginate(20);
+        $search = request()->search ?? null;
+
+        $plantMaterials = PlantMaterial::where('status', 1)
+            ->when($search, function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%{$search}%");
+            })
+            ->paginate(20);
 
         return view('plant::plantMaterial.index', compact('plantMaterials'));
     }

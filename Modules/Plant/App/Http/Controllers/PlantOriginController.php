@@ -16,7 +16,13 @@ class PlantOriginController extends Controller
      */
     public function index()
     {
-        $plantOrigins = PlantOrigin::where('status', 1)->paginate(20);
+        $search = request()->search ?? null;
+
+        $plantOrigins = PlantOrigin::where('status', 1)
+            ->when($search, function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%{$search}%");
+            })
+            ->paginate(20);
 
         return view('plant::plantOrigin.index', compact('plantOrigins'));
     }

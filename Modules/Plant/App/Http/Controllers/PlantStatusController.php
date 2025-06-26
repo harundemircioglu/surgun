@@ -18,7 +18,18 @@ class PlantStatusController extends Controller
      */
     public function index()
     {
+        $search = request()->search ?? null;
+
         $plantStatuses = PlantStatus::where('status', 1)
+            ->when($search, function ($query) use ($search) {
+                $query->whereHas('accesionNotebook', function ($query) use ($search) {
+                    $query->where('accesion_number', 'LIKE', "%{$search}%")
+                        ->orWhere('plant_name', 'LIKE', "%{$search}%");
+                })->orWhereHas('gardeLocation', function ($query) use ($search) {
+                    $query->where('code', 'LIKE', "%{$search}%")
+                        ->orWhere('description', 'LIKE', "%{$search}%");
+                });
+            })
             ->with([
                 'accesionNotebook',
                 'gardeLocation',
