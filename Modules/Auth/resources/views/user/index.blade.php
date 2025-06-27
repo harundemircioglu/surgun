@@ -140,6 +140,12 @@
                         </div>
                         <button type="submit"
                             class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
                             Ekle
                         </button>
                     </form>
@@ -156,22 +162,22 @@
                         ID
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        ad
+                        AD
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        soyad
+                        SOYAD
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        email
+                        EMAIL
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        telefon
+                        TELEFON
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        rol
+                        ROL
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        yetkiler
+                        İŞLEM
                     </th>
                 </tr>
             </thead>
@@ -327,7 +333,14 @@
                                                 </div>
                                                 <button type="submit"
                                                     class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                    Güncelle
+                                                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm2 2h8v4H6V4zm0 6h8v6H6v-6zm2-4h4v2H8V6z"
+                                                            clip-rule="evenodd">
+                                                        </path>
+                                                    </svg>
+                                                    Kaydet
                                                 </button>
                                             </form>
                                         </div>
@@ -365,7 +378,7 @@
                                                         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                                 </svg>
                                                 <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Silme
-                                                    işlemine devam etmek istediğinize emin misiniz?</h3>
+                                                    işlemini onaylıyor musunuz?</h3>
                                                 <form id="delete-user-form-{{ $user->id }}"
                                                     action="{{ route('user.destroy', ['id' => $user->id]) }}" method="POST">
                                                     @csrf
