@@ -44,12 +44,12 @@
                             <li>
                                 <a href="{{ route('dashboard.index') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">Dashboard</a>
+                                    role="menuitem">Kontrol Paneli</a>
                             </li>
                             <li>
                                 <a href="{{ route('user.profile.index') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">Profile</a>
+                                    role="menuitem">Profil</a>
                             </li>
                             <li>
                                 <form id="logout-form" action="{{ route('auth.logout') }}" method="POST"
@@ -61,7 +61,7 @@
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem">
-                                    Sign out
+                                    Çıkış Yap
                                 </a>
                             </li>
                         </ul>
@@ -87,7 +87,7 @@
                         <path
                             d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                     </svg>
-                    <span class="ms-3">Dashboard</span>
+                    <span class="ms-3">Kontrol Paneli</span>
                 </a>
             </li>
             <li>
@@ -111,7 +111,7 @@
                             d="M12 22s8-4 8-10V5a4 4 0 00-8 0 4 4 0 00-8 0v7c0 6 8 10 8 10z" />
                     </svg>
 
-                    <span class="flex-1 ms-3 whitespace-nowrap">Plant Material</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Materyal İşlemleri</span>
                 </a>
             </li>
             <li>
@@ -122,7 +122,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 11c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zM12 21C7 16 4 13 4 9a8 8 0 1116 0c0 4-3 7-8 12z" />
                     </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Plant Origin</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Köken İşlemleri</span>
                 </a>
             </li>
             <li>
@@ -133,7 +133,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M7 8h10M7 12h6m-6 4h8M5 5v14a2 2 0 002 2h10a2 2 0 002-2V5H5z" />
                     </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Accesion Notebook</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Aksesyon Defteri İşlemleri</span>
                 </a>
             </li>
             <li>
@@ -144,7 +144,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                     </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Seed Cabinet</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Tohum Dolap İşlemleri</span>
                 </a>
             </li>
             <li>
@@ -156,7 +156,7 @@
                             d="M3 10l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V10z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 22V12h6v10" />
                     </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Seed Bank</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Tohum Bankası İşlemleri</span>
                 </a>
             </li>
             <li>
@@ -169,7 +169,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 2C8 2 4 6 4 10c0 4.5 8 11 8 11s8-6.5 8-11c0-4-4-8-8-8z" />
                     </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Garden Location</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Bitki Konum İşlemleri</span>
                 </a>
             </li>
             <li>
@@ -180,7 +180,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 17v-6a1 1 0 011-1h4a1 1 0 011 1v6m-6 0H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-4m-6 0v2a1 1 0 001 1h2a1 1 0 001-1v-2" />
                     </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Plant Status</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Bitki Durum İşlemleri</span>
                 </a>
             </li>
         </ul>
