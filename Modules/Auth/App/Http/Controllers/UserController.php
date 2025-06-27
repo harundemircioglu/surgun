@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Mail;
 use Modules\Auth\App\Emails\TemporaryPassword;
@@ -70,9 +71,10 @@ class UserController extends Controller
         $user->phone = $data['phone'];
         $user->password = bcrypt($password);
         $user->role = $data['role'];
+        $user->save();
+
         $user->assignRole(Role::find($data['role'])->name);
         $user->givePermissionTo(Permission::whereIn('id', $data['permissions'])->pluck('name'));
-        $user->save();
 
         try {
             Mail::to($user->email)->send(new TemporaryPassword($password));
@@ -117,9 +119,10 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->phone = $data['phone'];
         $user->role = $data['role'];
+        $user->save();
+
         $user->syncRoles(Role::find($data['role'])->name);
         $user->syncPermissions(Permission::whereIn('id', $data['permissions'])->pluck('name'));
-        $user->save();
 
         return back()->with('success', 'User updated successfully.');
     }
@@ -135,7 +138,9 @@ class UserController extends Controller
             return back()->with('error', 'User not found.');
         }
 
-        $user->delete();
+        DB::transaction(function () use ($user) {
+            $user->delete();
+        });
 
         return back()->with('success', 'User deleted successfully.');
     }

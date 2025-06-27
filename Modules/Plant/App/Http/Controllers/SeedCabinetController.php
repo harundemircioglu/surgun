@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\Plant\App\Http\Requests\Create\SeedCabinetRequest;
 use Modules\Plant\App\Models\SeedCabinet;
 
@@ -42,7 +43,10 @@ class SeedCabinetController extends Controller
     public function store(SeedCabinetRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        SeedCabinet::create($data);
+
+        DB::transaction(function() use ($data){
+            SeedCabinet::create($data);
+        });
 
         return redirect()->back()->with(['success' => 'Seed Cabinet created successfully']);
     }
@@ -75,7 +79,9 @@ class SeedCabinetController extends Controller
             return redirect()->back()->with(['error' => 'Seed Cabinet not found']);
         }
 
-        $seedCabinet->update($data);
+        DB::transaction(function() use ($seedCabinet,$data){
+            $seedCabinet->update($data);
+        });
 
         return redirect()->back()->with(['success' => 'Seed Cabinet updated successfully']);
     }
@@ -91,7 +97,9 @@ class SeedCabinetController extends Controller
             return redirect()->back()->with(['error' => 'Seed Cabinet not found']);
         }
 
-        $seedCabinet->delete();
+        DB::transaction(function() use ($seedCabinet){
+            $seedCabinet->delete();
+        });
 
         return redirect()->back()->with(['success' => 'Seed Cabinet deleted successfully']);
     }

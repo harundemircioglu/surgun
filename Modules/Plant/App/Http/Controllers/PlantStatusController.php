@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\Plant\App\Http\Requests\Create\PlantStatusRequest;
 use Modules\Plant\App\Models\AccesionNotebook;
 use Modules\Plant\App\Models\GardenLocation;
@@ -61,7 +62,10 @@ class PlantStatusController extends Controller
     public function store(PlantStatusRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        PlantStatus::create($data);
+
+        DB::transaction(function () use ($data) {
+            PlantStatus::create($data);
+        });
 
         return back()->with(['success' => 'Plant status created successfully.']);
     }
@@ -94,7 +98,9 @@ class PlantStatusController extends Controller
             return back()->with(['error' => 'Plant status not found.']);
         }
 
-        $plantStatus->update($data);
+        DB::transaction(function () use ($plantStatus, $data) {
+            $plantStatus->update($data);
+        });
 
         return back()->with(['success' => 'Plant status updated successfully.']);
     }
@@ -110,7 +116,9 @@ class PlantStatusController extends Controller
             return back()->with(['error' => 'Plant status not found.']);
         }
 
-        $plantStatus->delete();
+        DB::transaction(function () use ($plantStatus) {
+            $plantStatus->delete();
+        });
 
         return back()->with(['success' => 'Plant status deleted successfully.']);
     }

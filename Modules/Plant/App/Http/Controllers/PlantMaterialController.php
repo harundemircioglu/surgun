@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\Plant\App\Http\Requests\Create\PlantMaterialRequest;
 use Modules\Plant\App\Models\PlantMaterial;
 
@@ -41,7 +42,10 @@ class PlantMaterialController extends Controller
     public function store(PlantMaterialRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        PlantMaterial::create($data);
+
+        DB::transaction(function () use ($data) {
+            PlantMaterial::create($data);
+        });
 
         return back()->with(['success' => 'Plant material created successfully.']);
     }
@@ -74,7 +78,9 @@ class PlantMaterialController extends Controller
             return back()->with(['error' => 'Plant material not found.']);
         }
 
-        $plantMaterial->update($data);
+        DB::transaction(function () use ($plantMaterial, $data) {
+            $plantMaterial->update($data);
+        });
 
         return back()->with(['success' => 'Plant material updated successfully.']);
     }
@@ -90,7 +96,9 @@ class PlantMaterialController extends Controller
             return back()->with(['error' => 'Plant material not found.']);
         }
 
-        $plantMaterial->delete();
+        DB::transaction(function () use ($plantMaterial) {
+            $plantMaterial->delete();
+        });
 
         return back()->with(['success' => 'Plant material deleted successfully.']);
     }
