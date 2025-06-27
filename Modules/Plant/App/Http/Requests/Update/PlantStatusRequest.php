@@ -25,25 +25,25 @@ class PlantStatusRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'accesion_notebook_id.required' => 'The accession notebook field is required.',
-            'accesion_notebook_id.exists' => 'The selected accession notebook is invalid.',
+            'accesion_notebook_id.required' => 'Erişim defteri alanı zorunludur.',
+            'accesion_notebook_id.exists' => 'Seçilen erişim defteri geçersiz.',
 
-            'observation_date.required' => 'The observation date field is required.',
-            'observation_date.date' => 'The observation date must be a valid date.',
+            'observation_date.required' => 'Gözlem tarihi alanı zorunludur.',
+            'observation_date.date' => 'Gözlem tarihi geçerli bir tarih olmalıdır.',
 
-            'garden_location_id.required' => 'The garden location field is required.',
-            'garden_location_id.exists' => 'The selected garden location is invalid.',
+            'garden_location_id.required' => 'Bahçe konumu alanı zorunludur.',
+            'garden_location_id.exists' => 'Seçilen bahçe konumu geçersiz.',
 
-            'plant_status.required' => 'The plant status field is required.',
-            'plant_status.integer' => 'The plant status must be an integer.',
-            'plant_status.in' => 'The selected plant status is invalid. Allowed values are 1, 2, 3, or 4.',
+            'plant_status.required' => 'Bitki durumu alanı zorunludur.',
+            'plant_status.integer' => 'Bitki durumu bir tam sayı olmalıdır.',
+            'plant_status.in' => 'Seçilen bitki durumu geçersiz. İzin verilen değerler 1, 2, 3 veya 4\'tür.',
 
-            'vegetation_status.required' => 'The vegetation status field is required.',
-            'vegetation_status.string' => 'The vegetation status must be a valid string.',
-            'vegetation_status.max' => 'The vegetation status must not exceed 255 characters.',
+            'vegetation_status.required' => 'Vejetasyon durumu alanı zorunludur.',
+            'vegetation_status.string' => 'Vejetasyon durumu geçerli bir metin olmalıdır.',
+            'vegetation_status.max' => 'Vejetasyon durumu 255 karakteri geçmemelidir.',
 
-            'observation.required' => 'The observation field is required.',
-            'observation.string' => 'The observation must be a valid string.',
+            'observation.required' => 'Gözlem alanı zorunludur.',
+            'observation.string' => 'Gözlem geçerli bir metin olmalıdır.',
         ];
     }
 

@@ -20,10 +20,10 @@ class PlantMaterialRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The name field is required.',
-            'name.string' => 'The name must be a valid string.',
-            'name.max' => 'The name must not exceed 255 characters.',
-            'name.unique' => 'The name has already been taken.',
+            'name.required' => 'İsim alanı zorunludur.',
+            'name.string' => 'İsim geçerli bir metin olmalıdır.',
+            'name.max' => 'İsim 255 karakteri geçmemelidir.',
+            'name.unique' => 'Bu isim zaten kullanılmış.',
         ];
     }
 

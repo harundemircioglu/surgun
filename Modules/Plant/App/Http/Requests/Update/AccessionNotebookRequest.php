@@ -25,26 +25,26 @@ class AccessionNotebookRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'plant_name.required' => 'The plant name field is required.',
-            'plant_name.string' => 'The plant name must be a valid string.',
-            'plant_name.max' => 'The plant name must not exceed 255 characters.',
+            'plant_name.required' => 'Bitki adı alanı zorunludur.',
+            'plant_name.string' => 'Bitki adı geçerli bir metin olmalıdır.',
+            'plant_name.max' => 'Bitki adı 255 karakteri geçmemelidir.',
 
-            'plant_material_id.required' => 'The plant material field is required.',
-            'plant_material_id.exists' => 'The selected plant material is invalid.',
+            'plant_material_id.required' => 'Bitki materyali alanı zorunludur.',
+            'plant_material_id.exists' => 'Seçilen bitki materyali geçersiz.',
 
-            'plant_origin_id.required' => 'The plant origin field is required.',
-            'plant_origin_id.exists' => 'The selected plant origin is invalid.',
+            'plant_origin_id.required' => 'Bitki menşei alanı zorunludur.',
+            'plant_origin_id.exists' => 'Seçilen bitki menşei geçersiz.',
 
-            'location.required' => 'The location field is required.',
-            'location.string' => 'The location must be a valid string.',
-            'location.max' => 'The location must not exceed 255 characters.',
+            'location.required' => 'Konum alanı zorunludur.',
+            'location.string' => 'Konum geçerli bir metin olmalıdır.',
+            'location.max' => 'Konum 255 karakteri geçmemelidir.',
 
-            'coordinate.required' => 'The coordinate field is required.',
-            'coordinate.string' => 'The coordinate must be a valid string.',
-            'coordinate.max' => 'The coordinate must not exceed 255 characters.',
+            'coordinate.required' => 'Koordinat alanı zorunludur.',
+            'coordinate.string' => 'Koordinat geçerli bir metin olmalıdır.',
+            'coordinate.max' => 'Koordinat 255 karakteri geçmemelidir.',
 
-            'convening_date.required' => 'The convening date field is required.',
-            'convening_date.date' => 'The convening date must be a valid date.',
+            'convening_date.required' => 'Toplanma tarihi alanı zorunludur.',
+            'convening_date.date' => 'Toplanma tarihi geçerli bir tarih olmalıdır.',
         ];
     }
 

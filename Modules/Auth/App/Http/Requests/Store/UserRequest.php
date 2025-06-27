@@ -26,28 +26,28 @@ class UserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The name field is required.',
-            'name.string' => 'The name must be a valid string.',
-            'name.max' => 'The name must not exceed 255 characters.',
+            'name.required' => 'İsim alanı zorunludur.',
+            'name.string' => 'İsim geçerli bir metin olmalıdır.',
+            'name.max' => 'İsim 255 karakteri geçmemelidir.',
 
-            'surname.string' => 'The surname must be a valid string.',
-            'surname.max' => 'The surname must not exceed 255 characters.',
+            'surname.string' => 'Soyisim geçerli bir metin olmalıdır.',
+            'surname.max' => 'Soyisim 255 karakteri geçmemelidir.',
 
-            'email.required' => 'The email field is required.',
-            'email.email' => 'Please enter a valid email address.',
-            'email.unique' => 'This email is already in use.',
+            'email.required' => 'Email alanı zorunludur.',
+            'email.email' => 'Lütfen geçerli bir email adresi girin.',
+            'email.unique' => 'Bu email zaten kullanılıyor.',
 
-            'phone.string' => 'The phone number must be a valid string.',
-            'phone.max' => 'The phone number must not exceed 10 characters.',
-            'phone.unique' => 'This phone number is already in use.',
+            'phone.string' => 'Telefon numarası geçerli bir metin olmalıdır.',
+            'phone.max' => 'Telefon numarası 10 karakteri geçmemelidir.',
+            'phone.unique' => 'Bu telefon numarası zaten kullanılıyor.',
 
-            'role.required' => 'The role field is required.',
-            'role.exists' => 'The selected role is invalid.',
+            'role.required' => 'Rol alanı zorunludur.',
+            'role.exists' => 'Seçilen rol geçersizdir.',
 
-            'permissions.required' => 'The permissions field is required.',
-            'permissions.array' => 'The permissions must be an array.',
-            'permissions.*.required' => 'Each permission is required.',
-            'permissions.*.exists' => 'One or more selected permissions are invalid.',
+            'permissions.required' => 'Yetkiler alanı zorunludur.',
+            'permissions.array' => 'Yetkiler bir dizi olmalıdır.',
+            'permissions.*.required' => 'Her yetki zorunludur.',
+            'permissions.*.exists' => 'Seçilen yetkilerden biri veya birkaçı geçersizdir.',
         ];
     }
 

@@ -47,7 +47,7 @@ class PlantOriginController extends Controller
             PlantOrigin::create($data);
         });
 
-        return back()->with(['success' => 'Plant origin created successfully.']);
+        return back()->with(['success' => 'Ekleme işlemi başarılı']);
     }
 
     /**
@@ -75,14 +75,14 @@ class PlantOriginController extends Controller
         $plantOrigin = PlantOrigin::find($id);
 
         if (!$plantOrigin) {
-            return back()->with(['error' => 'Plant origin not found.']);
+            return back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($plantOrigin, $data) {
             $plantOrigin->update($data);
         });
 
-        return back()->with(['success' => 'Plant origin updated successfully.']);
+        return back()->with(['success' => 'Güncelleme işlemi başarılı']);
     }
 
     /**
@@ -93,13 +93,13 @@ class PlantOriginController extends Controller
         $plantOrigin = PlantOrigin::find($id);
 
         if (!$plantOrigin) {
-            return back()->with(['error' => 'Plant origin not found.']);
+            return back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($plantOrigin) {
             $plantOrigin->delete();
         });
 
-        return back()->with(['success' => 'Plant origin deleted successfully.']);
+        return back()->with(['success' => 'Silme işlemi bulunamadı']);
     }
 }

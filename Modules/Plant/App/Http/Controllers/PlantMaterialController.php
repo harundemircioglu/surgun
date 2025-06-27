@@ -47,7 +47,7 @@ class PlantMaterialController extends Controller
             PlantMaterial::create($data);
         });
 
-        return back()->with(['success' => 'Plant material created successfully.']);
+        return back()->with(['success' => 'Ekleme işlemi başarılı']);
     }
 
     /**
@@ -75,14 +75,14 @@ class PlantMaterialController extends Controller
         $plantMaterial = PlantMaterial::find($id);
 
         if (!$plantMaterial) {
-            return back()->with(['error' => 'Plant material not found.']);
+            return back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($plantMaterial, $data) {
             $plantMaterial->update($data);
         });
 
-        return back()->with(['success' => 'Plant material updated successfully.']);
+        return back()->with(['success' => 'Güncelleme işlemi başarılı']);
     }
 
     /**
@@ -93,13 +93,13 @@ class PlantMaterialController extends Controller
         $plantMaterial = PlantMaterial::find($id);
 
         if (!$plantMaterial) {
-            return back()->with(['error' => 'Plant material not found.']);
+            return back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($plantMaterial) {
             $plantMaterial->delete();
         });
 
-        return back()->with(['success' => 'Plant material deleted successfully.']);
+        return back()->with(['success' => 'Silme işlemi başarılı']);
     }
 }

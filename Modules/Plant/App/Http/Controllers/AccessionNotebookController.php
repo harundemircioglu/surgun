@@ -68,7 +68,7 @@ class AccessionNotebookController extends Controller
             AccesionNotebook::create($data);
         });
 
-        return redirect()->back()->with(['success' => 'Accession Notebook created successfully']);
+        return redirect()->back()->with(['success' => 'Ekleme işlemi başarılı']);
     }
 
     /**
@@ -96,14 +96,14 @@ class AccessionNotebookController extends Controller
         $accesionNotebook = AccesionNotebook::find($id);
 
         if (!$accesionNotebook) {
-            return redirect()->back()->with(['error' => 'Accession Notebook not found']);
+            return redirect()->back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($accesionNotebook, $data) {
             $accesionNotebook->update($data);
         });
 
-        return redirect()->back()->with(['success' => 'Accession Notebook updated successfully']);
+        return redirect()->back()->with(['success' => 'Güncelleme işlemi başarılı']);
     }
 
     /**
@@ -114,13 +114,13 @@ class AccessionNotebookController extends Controller
         $accesionNotebook = AccesionNotebook::find($id);
 
         if (!$accesionNotebook) {
-            return redirect()->back()->with(['error' => 'Accession Notebook not found']);
+            return redirect()->back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($accesionNotebook) {
             $accesionNotebook->delete();
         });
 
-        return redirect()->back()->with(['success' => 'Accession Notebook deleted successfully']);
+        return redirect()->back()->with(['success' => 'Silme işlemi başarılı']);
     }
 }

@@ -21,14 +21,14 @@ class SeedCabinetRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'code.required' => 'The code field is required.',
-            'code.string' => 'The code must be a valid string.',
-            'code.max' => 'The code must not exceed 255 characters.',
-            'code.unique' => 'The code has already been taken.',
+            'code.required' => 'Kod alanı zorunludur.',
+            'code.string' => 'Kod geçerli bir metin olmalıdır.',
+            'code.max' => 'Kod 255 karakteri geçmemelidir.',
+            'code.unique' => 'Bu kod zaten kullanılmış.',
 
-            'description.required' => 'The description field is required.',
-            'description.string' => 'The description must be a valid string.',
-            'description.max' => 'The description must not exceed 255 characters.',
+            'description.required' => 'Açıklama alanı zorunludur.',
+            'description.string' => 'Açıklama geçerli bir metin olmalıdır.',
+            'description.max' => 'Açıklama 255 karakteri geçmemelidir.',
         ];
     }
 

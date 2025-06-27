@@ -34,7 +34,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard.index');
         }
 
-        return redirect()->back()->with(['error' => 'Error']);
+        return redirect()->back()->with(['error' => 'Hata!']);
     }
 
     public function logout(Request $request)
@@ -81,7 +81,7 @@ class AuthController extends Controller
 
         if ($twoFactorCode && Carbon::parse($twoFactorCode->expires_at)->isFuture()) {
             return response()->json([
-                'error' => 'A code has already been sent.'
+                'error' => 'Bir doğrulama kodu zaten gönderildi.'
             ], 422);
         }
 
@@ -101,11 +101,11 @@ class AuthController extends Controller
             Mail::to($user->email)->send(new TwoStepVerification($code));
 
             return response()->json([
-                'success' => 'A verification code has been sent to your email.'
+                'success' => 'E-posta adresinize bir doğrulama kodu gönderildi.'
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
-                'error' => 'Failed to send verification code. Please try again later.'
+                'error' => 'Doğrulama kodu gönderilemedi. Lütfen daha sonra tekrar deneyin.'
             ], 500);
         }
     }
@@ -114,6 +114,9 @@ class AuthController extends Controller
     {
         $request->validate([
             'code' => 'required|integer',
+        ], [
+            'code.required' => 'Doğrulama kodu zorunludur.',
+            'code.integer' => 'Doğrulama kodu sadece rakamlardan oluşmalıdır.',
         ]);
 
         $user = auth()->user();
@@ -126,7 +129,7 @@ class AuthController extends Controller
 
         if ((!$twoFactorCode) || ($twoFactorCode && Carbon::parse($twoFactorCode->expires_at)->isPast())) {
             return response()->json([
-                'error' => 'Invalid or expired code.'
+                'error' => 'Geçersiz veya süresi dolmuş kod.'
             ], 422);
         }
 

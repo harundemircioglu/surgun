@@ -20,12 +20,12 @@ class LoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => 'The email field is required.',
-            'email.email' => 'Please enter a valid email address.',
-            'email.exists' => 'The entered email does not exist in our records.',
+            'email.required' => 'E-posta alanı zorunludur.',
+            'email.email' => 'Lütfen geçerli bir e-posta adresi girin.',
+            'email.exists' => 'Girilen e-posta sistemimizde kayıtlı değil.',
 
-            'password.required' => 'The password field is required.',
-            'password.string' => 'The password must be a valid string.',
+            'password.required' => 'Şifre alanı zorunludur.',
+            'password.string' => 'Şifre geçerli bir metin olmalıdır.',
         ];
     }
 }

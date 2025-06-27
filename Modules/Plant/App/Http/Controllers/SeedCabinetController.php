@@ -44,11 +44,11 @@ class SeedCabinetController extends Controller
     {
         $data = $request->validated();
 
-        DB::transaction(function() use ($data){
+        DB::transaction(function () use ($data) {
             SeedCabinet::create($data);
         });
 
-        return redirect()->back()->with(['success' => 'Seed Cabinet created successfully']);
+        return redirect()->back()->with(['success' => 'Ekleme işlemi başarılı']);
     }
 
     /**
@@ -76,14 +76,14 @@ class SeedCabinetController extends Controller
         $seedCabinet = SeedCabinet::find($id);
 
         if (!$seedCabinet) {
-            return redirect()->back()->with(['error' => 'Seed Cabinet not found']);
+            return redirect()->back()->with(['error' => 'Veri bulunamadı.']);
         }
 
-        DB::transaction(function() use ($seedCabinet,$data){
+        DB::transaction(function () use ($seedCabinet, $data) {
             $seedCabinet->update($data);
         });
 
-        return redirect()->back()->with(['success' => 'Seed Cabinet updated successfully']);
+        return redirect()->back()->with(['success' => 'Güncelleme işlemi başarılı']);
     }
 
     /**
@@ -94,13 +94,13 @@ class SeedCabinetController extends Controller
         $seedCabinet = SeedCabinet::find($id);
 
         if (!$seedCabinet) {
-            return redirect()->back()->with(['error' => 'Seed Cabinet not found']);
+            return redirect()->back()->with(['error' => 'Veri bulunamadı']);
         }
 
-        DB::transaction(function() use ($seedCabinet){
+        DB::transaction(function () use ($seedCabinet) {
             $seedCabinet->delete();
         });
 
-        return redirect()->back()->with(['success' => 'Seed Cabinet deleted successfully']);
+        return redirect()->back()->with(['success' => 'Silme işlemi başarılı']);
     }
 }

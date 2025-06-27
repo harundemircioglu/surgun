@@ -19,10 +19,10 @@ class ChangeFirstPasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'password.required' => 'The password field is required.',
-            'password.string' => 'The password must be a valid string.',
-            'password.min' => 'The password must be at least 8 characters.',
-            'password.confirmed' => 'The password confirmation does not match.',
+            'password.required' => 'Şifre alanı zorunludur.',
+            'password.string' => 'Şifre geçerli bir metin olmalıdır.',
+            'password.min' => 'Şifre en az 8 karakter olmalıdır.',
+            'password.confirmed' => 'Şifre doğrulaması eşleşmiyor.',
         ];
     }
 

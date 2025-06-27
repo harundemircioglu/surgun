@@ -23,20 +23,20 @@ class UpdateProfileRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The name field is required.',
-            'name.string' => 'The name must be a valid string.',
-            'name.max' => 'The name must not exceed 255 characters.',
+            'name.required' => 'İsim alanı zorunludur.',
+            'name.string' => 'İsim geçerli bir metin olmalıdır.',
+            'name.max' => 'İsim en fazla 255 karakter olabilir.',
 
-            'surname.string' => 'The surname must be a valid string.',
-            'surname.max' => 'The surname must not exceed 255 characters.',
+            'surname.string' => 'Soyisim geçerli bir metin olmalıdır.',
+            'surname.max' => 'Soyisim en fazla 255 karakter olabilir.',
 
-            'email.required' => 'The email field is required.',
-            'email.email' => 'Please enter a valid email address.',
-            'email.unique' => 'This email is already in use.',
+            'email.required' => 'E-posta alanı zorunludur.',
+            'email.email' => 'Lütfen geçerli bir e-posta adresi giriniz.',
+            'email.unique' => 'Bu e-posta adresi zaten kullanımda.',
 
-            'phone.string' => 'The phone number must be a valid string.',
-            'phone.max' => 'The phone number must not exceed 10 characters.',
-            'phone.unique' => 'This phone number is already in use.',
+            'phone.string' => 'Telefon numarası geçerli bir metin olmalıdır.',
+            'phone.max' => 'Telefon numarası en fazla 10 karakter olabilir.',
+            'phone.unique' => 'Bu telefon numarası zaten kullanımda.',
         ];
     }
 

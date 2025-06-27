@@ -68,7 +68,7 @@ class SeedBankController extends Controller
             SeedBank::create($data);
         });
 
-        return redirect()->back()->with(['success' => 'Seed Bank created successfully']);
+        return redirect()->back()->with(['success' => 'Ekleme işlemi başarılı']);
     }
 
     /**
@@ -96,14 +96,14 @@ class SeedBankController extends Controller
         $seedBank = SeedBank::find($id);
 
         if (!$seedBank) {
-            return redirect()->back()->with(['error' => 'Seed Bank not found']);
+            return redirect()->back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($seedBank, $data) {
             $seedBank->update($data);
         });
 
-        return redirect()->back()->with(['success' => 'Seed Bank updated successfully']);
+        return redirect()->back()->with(['success' => 'Güncelleme işlemi başarılı']);
     }
 
     /**
@@ -114,13 +114,13 @@ class SeedBankController extends Controller
         $seedBank = SeedBank::find($id);
 
         if (!$seedBank) {
-            return redirect()->back()->with(['error' => 'Seed Bank not found']);
+            return redirect()->back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($seedBank) {
             $seedBank->delete();
         });
 
-        return redirect()->back()->with(['success' => 'Seed Bank deleted successfully']);
+        return redirect()->back()->with(['success' => 'Silme işlemi başarılı']);
     }
 }

@@ -48,7 +48,7 @@ class GardenLocationController extends Controller
             GardenLocation::create($data);
         });
 
-        return redirect()->back()->with(['success' => 'Garden Location created successfully']);
+        return redirect()->back()->with(['success' => 'Ekleme işlemi başarılı']);
     }
 
     /**
@@ -76,14 +76,14 @@ class GardenLocationController extends Controller
         $gardenLocation = GardenLocation::find($id);
 
         if (!$gardenLocation) {
-            return redirect()->back()->with(['error' => 'Garden Location not found']);
+            return redirect()->back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($gardenLocation, $data) {
             $gardenLocation->update($data);
         });
 
-        return redirect()->back()->with(['success' => 'Garden Location updated successfully']);
+        return redirect()->back()->with(['success' => 'Güncelleme işlemi başarılı']);
     }
 
     /**
@@ -94,13 +94,13 @@ class GardenLocationController extends Controller
         $gardenLocation = GardenLocation::find($id);
 
         if (!$gardenLocation) {
-            return redirect()->back()->with(['error' => 'Garden Location not found']);
+            return redirect()->back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($gardenLocation) {
             $gardenLocation->delete();
         });
 
-        return redirect()->back()->with(['success' => 'Garden Location deleted successfully']);
+        return redirect()->back()->with(['success' => 'Silme işlemi başarılı']);
     }
 }

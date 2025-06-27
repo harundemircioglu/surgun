@@ -20,13 +20,13 @@ class UpdatePasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'current_password.required' => 'The current password field is required.',
-            'current_password.current_password' => 'The current password is incorrect.',
+            'current_password.required' => 'Mevcut şifre alanı zorunludur.',
+            'current_password.current_password' => 'Mevcut şifre hatalı.',
 
-            'password.required' => 'The new password field is required.',
-            'password.string' => 'The new password must be a valid string.',
-            'password.min' => 'The new password must be at least 8 characters.',
-            'password.confirmed' => 'The new password confirmation does not match.',
+            'password.required' => 'Yeni şifre alanı zorunludur.',
+            'password.string' => 'Yeni şifre geçerli bir metin olmalıdır.',
+            'password.min' => 'Yeni şifre en az 8 karakter olmalıdır.',
+            'password.confirmed' => 'Yeni şifre doğrulaması eşleşmiyor.',
         ];
     }
 

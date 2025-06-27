@@ -22,14 +22,14 @@ class SeedBankRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'accesion_notebook_id.required' => 'The accession notebook field is required.',
-            'accesion_notebook_id.exists' => 'The selected accession notebook is invalid.',
+            'accesion_notebook_id.required' => 'Kayıt defteri alanı zorunludur.',
+            'accesion_notebook_id.exists' => 'Seçilen kayıt defteri geçersiz.',
 
-            'quantity.required' => 'The quantity field is required.',
-            'quantity.json' => 'The quantity must be a valid JSON string.',
+            'quantity.required' => 'Miktar alanı zorunludur.',
+            'quantity.json' => 'Miktar geçerli bir JSON dizgesi olmalıdır.',
 
-            'seed_cabinet_id.required' => 'The seed cabinet field is required.',
-            'seed_cabinet_id.exists' => 'The selected seed cabinet is invalid.',
+            'seed_cabinet_id.required' => 'Tohum dolabı alanı zorunludur.',
+            'seed_cabinet_id.exists' => 'Seçilen tohum dolabı geçersiz.',
         ];
     }
 

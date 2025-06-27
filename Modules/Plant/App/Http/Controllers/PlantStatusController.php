@@ -67,7 +67,7 @@ class PlantStatusController extends Controller
             PlantStatus::create($data);
         });
 
-        return back()->with(['success' => 'Plant status created successfully.']);
+        return back()->with(['success' => 'Ekleme işlemi başarılı']);
     }
 
     /**
@@ -95,14 +95,14 @@ class PlantStatusController extends Controller
         $plantStatus = PlantStatus::find($id);
 
         if (!$plantStatus) {
-            return back()->with(['error' => 'Plant status not found.']);
+            return back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($plantStatus, $data) {
             $plantStatus->update($data);
         });
 
-        return back()->with(['success' => 'Plant status updated successfully.']);
+        return back()->with(['success' => 'Güncelleme işlemi başarılı']);
     }
 
     /**
@@ -113,13 +113,13 @@ class PlantStatusController extends Controller
         $plantStatus = PlantStatus::find($id);
 
         if (!$plantStatus) {
-            return back()->with(['error' => 'Plant status not found.']);
+            return back()->with(['error' => 'Veri bulunamadı']);
         }
 
         DB::transaction(function () use ($plantStatus) {
             $plantStatus->delete();
         });
 
-        return back()->with(['success' => 'Plant status deleted successfully.']);
+        return back()->with(['success' => 'Güncelleme işlemi başarılı']);
     }
 }

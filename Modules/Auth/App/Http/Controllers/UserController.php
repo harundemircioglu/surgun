@@ -82,7 +82,7 @@ class UserController extends Controller
             //throw $th;
         }
 
-        return back()->with('success', 'User created successfully.');
+        return back()->with('success', 'Ekleme işlemi başarılı');
     }
 
     /**
@@ -109,7 +109,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return back()->with('error', 'User not found.');
+            return back()->with('error', 'Veri bulunamadı');
         }
 
         $data = $request->validated();
@@ -124,7 +124,7 @@ class UserController extends Controller
         $user->syncRoles(Role::find($data['role'])->name);
         $user->syncPermissions(Permission::whereIn('id', $data['permissions'])->pluck('name'));
 
-        return back()->with('success', 'User updated successfully.');
+        return back()->with('success', 'Güncelleme işlemi başarılı');
     }
 
     /**
@@ -135,13 +135,13 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return back()->with('error', 'User not found.');
+            return back()->with('error', 'Veri bulunamadı');
         }
 
         DB::transaction(function () use ($user) {
             $user->delete();
         });
 
-        return back()->with('success', 'User deleted successfully.');
+        return back()->with('success', 'Silme işlemi başarılı');
     }
 }
