@@ -24,9 +24,7 @@ class UserController extends Controller
     {
         $search = request()->search ?? null;
 
-        $users = User::where('is_active', true)
-            ->whereIn('role', [2, 3])
-            ->whereNot('id', auth()->id())
+        $users = User::whereIn('role', [2, 3])
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('name', 'LIKE', "%{$search}%")
