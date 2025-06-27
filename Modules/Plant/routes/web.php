@@ -21,8 +21,8 @@ use Modules\Plant\App\Http\Controllers\SeedCabinetController;
 |
 */
 
-Route::middleware(['web', 'auth', 'role:super-admin|admin|guest', 'check_first_password_change', 'check_two_step_verification'])->prefix('plant')->name('plant.')->group(function () {
-    Route::prefix('material')->name('material.')->group(function () {
+Route::middleware(['web', 'auth', 'check_first_password_change', 'check_two_step_verification'])->prefix('plant')->name('plant.')->group(function () {
+    Route::middleware(['role:super-admin|admin'])->prefix('material')->name('material.')->group(function () {
         // List and show routes
         Route::get('/', [PlantMaterialController::class, 'index'])->name('index');
 
@@ -32,7 +32,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest', 'check_first_p
         Route::post('/destroy/{id}', [PlantMaterialController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
     });
 
-    Route::prefix('origin')->name('origin.')->group(function () {
+    Route::middleware(['role:super-admin|admin'])->prefix('origin')->name('origin.')->group(function () {
         // List and show routes
         Route::get('/', [PlantOriginController::class, 'index'])->name('index');
 
@@ -42,7 +42,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest', 'check_first_p
         Route::post('/destroy/{id}', [PlantOriginController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
     });
 
-    Route::prefix('accession-notebook')->name('accession-notebook.')->group(function () {
+    Route::middleware(['role:super-admin|admin|guest'])->prefix('accession-notebook')->name('accession-notebook.')->group(function () {
         // List and show routes
         Route::get('/', [AccessionNotebookController::class, 'index'])->name('index');
 
@@ -52,7 +52,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest', 'check_first_p
         Route::post('/destroy/{id}', [AccessionNotebookController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
     });
 
-    Route::prefix('seed-cabinet')->name('seed-cabinet.')->group(function () {
+    Route::middleware(['role:super-admin|admin'])->prefix('seed-cabinet')->name('seed-cabinet.')->group(function () {
         // List and show routes
         Route::get('/', [SeedCabinetController::class, 'index'])->name('index');
 
@@ -62,7 +62,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest', 'check_first_p
         Route::post('/destroy/{id}', [SeedCabinetController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
     });
 
-    Route::prefix('seed-bank')->name('seed-bank.')->group(function () {
+    Route::middleware(['role:super-admin|admin|guest'])->prefix('seed-bank')->name('seed-bank.')->group(function () {
         // List and show routes
         Route::get('/', [SeedBankController::class, 'index'])->name('index');
 
@@ -72,7 +72,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest', 'check_first_p
         Route::post('/destroy/{id}', [SeedBankController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
     });
 
-    Route::prefix('garden-location')->name('garden-location.')->group(function () {
+    Route::middleware(['role:super-admin|admin'])->prefix('garden-location')->name('garden-location.')->group(function () {
         // List and show routes
         Route::get('/', [GardenLocationController::class, 'index'])->name('index');
 
@@ -82,7 +82,7 @@ Route::middleware(['web', 'auth', 'role:super-admin|admin|guest', 'check_first_p
         Route::post('/destroy/{id}', [GardenLocationController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
     });
 
-    Route::prefix('plant-status')->name('plant-status.')->group(function () {
+    Route::middleware(['role:super-admin|admin|guest'])->prefix('plant-status')->name('plant-status.')->group(function () {
         // List and show routes
         Route::get('/', [PlantStatusController::class, 'index'])->name('index');
 

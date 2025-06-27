@@ -90,99 +90,115 @@
                     <span class="ms-3">Kontrol Paneli</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('user.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5.5 20a8.38 8.38 0 0113 0M12 12a4 4 0 100-8 4 4 0 000 8z" />
-                    </svg>
+            @role(['super-admin'])
+                <li>
+                    <a href="{{ route('user.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.5 20a8.38 8.38 0 0113 0M12 12a4 4 0 100-8 4 4 0 000 8z" />
+                        </svg>
 
-                    <span class="flex-1 ms-3 whitespace-nowrap">Kullanıcı İşlemleri</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('plant.material.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 22s8-4 8-10V5a4 4 0 00-8 0 4 4 0 00-8 0v7c0 6 8 10 8 10z" />
-                    </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Kullanıcı İşlemleri</span>
+                    </a>
+                </li>
+            @endrole
+            @role(['super-admin', 'admin'])
+                <li>
+                    <a href="{{ route('plant.material.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 22s8-4 8-10V5a4 4 0 00-8 0 4 4 0 00-8 0v7c0 6 8 10 8 10z" />
+                        </svg>
 
-                    <span class="flex-1 ms-3 whitespace-nowrap">Bitki Materyalleri</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('plant.origin.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 11c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zM12 21C7 16 4 13 4 9a8 8 0 1116 0c0 4-3 7-8 12z" />
-                    </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Bitki Kökenleri</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('plant.accession-notebook.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 8h10M7 12h6m-6 4h8M5 5v14a2 2 0 002 2h10a2 2 0 002-2V5H5z" />
-                    </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Aksesyon Defteri</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('plant.seed-cabinet.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                    </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Tohum Dolapları</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('plant.seed-bank.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 10l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V10z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 22V12h6v10" />
-                    </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Tohum Bankası</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('plant.garden-location.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 11c1.104 0 2-.672 2-1.5S13.104 8 12 8s-2 .672-2 1.5.896 1.5 2 1.5z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 2C8 2 4 6 4 10c0 4.5 8 11 8 11s8-6.5 8-11c0-4-4-8-8-8z" />
-                    </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Bitki Konumları</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('plant.plant-status.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 17v-6a1 1 0 011-1h4a1 1 0 011 1v6m-6 0H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-4m-6 0v2a1 1 0 001 1h2a1 1 0 001-1v-2" />
-                    </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Bitki Durumları</span>
-                </a>
-            </li>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Bitki Materyalleri</span>
+                    </a>
+                </li>
+            @endrole
+            @role(['super-admin', 'admin'])
+                <li>
+                    <a href="{{ route('plant.origin.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 11c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zM12 21C7 16 4 13 4 9a8 8 0 1116 0c0 4-3 7-8 12z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Bitki Kökenleri</span>
+                    </a>
+                </li>
+            @endrole
+            @role(['super-admin', 'admin', 'guest'])
+                <li>
+                    <a href="{{ route('plant.accession-notebook.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 8h10M7 12h6m-6 4h8M5 5v14a2 2 0 002 2h10a2 2 0 002-2V5H5z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Aksesyon Defteri</span>
+                    </a>
+                </li>
+            @endrole
+            @role(['super-admin', 'admin'])
+                <li>
+                    <a href="{{ route('plant.seed-cabinet.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Tohum Dolapları</span>
+                    </a>
+                </li>
+            @endrole
+            @role(['super-admin', 'admin', 'guest'])
+                <li>
+                    <a href="{{ route('plant.seed-bank.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 10l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V10z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 22V12h6v10" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Tohum Bankası</span>
+                    </a>
+                </li>
+            @endrole
+            @role(['super-admin', 'admin'])
+                <li>
+                    <a href="{{ route('plant.garden-location.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 11c1.104 0 2-.672 2-1.5S13.104 8 12 8s-2 .672-2 1.5.896 1.5 2 1.5z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 2C8 2 4 6 4 10c0 4.5 8 11 8 11s8-6.5 8-11c0-4-4-8-8-8z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Bitki Konumları</span>
+                    </a>
+                </li>
+            @endrole
+            @role(['super-admin', 'admin', 'guest'])
+                <li>
+                    <a href="{{ route('plant.plant-status.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 17v-6a1 1 0 011-1h4a1 1 0 011 1v6m-6 0H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-4m-6 0v2a1 1 0 001 1h2a1 1 0 001-1v-2" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Bitki Durumları</span>
+                    </a>
+                </li>
+            @endrole
         </ul>
     </div>
 </aside>

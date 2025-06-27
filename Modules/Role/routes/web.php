@@ -15,7 +15,7 @@ use Modules\Role\App\Http\Controllers\UserPermissionController;
 |
 */
 
-Route::middleware(['web', 'auth'])->prefix('role')->name('role.')->group(function () {
+Route::middleware(['web', 'auth', 'role:super-admin'])->prefix('role')->name('role.')->group(function () {
     // role routes
 
     Route::prefix('permission')->name('permission.')->group(function () {

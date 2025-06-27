@@ -32,12 +32,14 @@ Route::middleware(['web', 'auth'])->name('auth.')->group(function () {
     Route::post('/verify-two-step-verification-code', [AuthController::class, 'verifyTwoStepVerificationCode'])->name('verifyTwoStepVerificationCode');
 });
 
-Route::middleware(['auth', 'web', 'check_first_password_change', 'check_two_step_verification'])->prefix('user')->name('user.')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('index');
+Route::middleware(['web', 'auth', 'check_first_password_change', 'check_two_step_verification'])->prefix('user')->name('user.')->group(function () {
+    Route::middleware(['role:super-admin'])->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
 
-    Route::post('/store', [UserController::class, 'store'])->name('store')->middleware('can:can_create_data');
-    Route::post('/update/{id}', [UserController::class, 'update'])->name('update')->middleware('can:can_update_data');
-    Route::post('/destroy/{id}', [UserController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
+        Route::post('/store', [UserController::class, 'store'])->name('store')->middleware('can:can_create_data');
+        Route::post('/update/{id}', [UserController::class, 'update'])->name('update')->middleware('can:can_update_data');
+        Route::post('/destroy/{id}', [UserController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
+    });
 
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('index');
