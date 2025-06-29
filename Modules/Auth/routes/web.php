@@ -16,7 +16,7 @@ use Modules\Auth\App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [AuthController::class, 'loginIndex'])->name('login');
+Route::get('/', [AuthController::class, 'loginIndex'])->name('login')->middleware('check_login');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
 Route::middleware(['web', 'auth', 'check_user_active_status'])->name('auth.')->group(function () {

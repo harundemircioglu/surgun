@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Modules\Auth\App\Http\Middleware\CheckFirstPasswordChange;
+use Modules\Auth\App\Http\Middleware\CheckLogin;
 use Modules\Auth\App\Http\Middleware\CheckTwoStepVerification;
 use Modules\Auth\App\Http\Middleware\CheckUserActiveStatus;
 
@@ -73,5 +74,6 @@ class Kernel extends HttpKernel
         'check_first_password_change' => CheckFirstPasswordChange::class,
         'check_two_step_verification' => CheckTwoStepVerification::class,
         'check_user_active_status' => CheckUserActiveStatus::class,
+        'check_login' => CheckLogin::class,
     ];
 }
