@@ -18,6 +18,7 @@ class UserRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->id)],
             'phone' => ['nullable', 'string', 'max:10', Rule::unique('users', 'phone')->ignore($this->id)],
             'role' => ['required', Rule::exists('roles', 'id')],
+            'active_status' => ['required', 'integer', 'in:0,1'],
             'permissions' => ['required', 'array'],
             'permissions.*' => ['required', Rule::exists('permissions', 'id')],
         ];
@@ -43,6 +44,10 @@ class UserRequest extends FormRequest
 
             'role.required' => 'Rol alanı zorunludur.',
             'role.exists' => 'Seçilen rol geçersizdir.',
+
+            'active_status.required' => 'Aktiflik durumu alanı zorunludur.',
+            'active_status.integer' => 'Aktiflik durumu bir tam sayı olmalıdır.',
+            'active_status.in' => 'Aktiflik durumu yalnızca 0 (pasif) veya 1 (aktif) olabilir.',
 
             'permissions.required' => 'Yetkiler alanı zorunludur.',
             'permissions.array' => 'Yetkiler bir dizi olmalıdır.',

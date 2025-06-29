@@ -117,6 +117,7 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->phone = $data['phone'];
         $user->role = $data['role'];
+        $user->is_active = $data['active_status'] == 1 ? true : false;
         $user->save();
 
         $user->syncRoles(Role::find($data['role'])->name);
