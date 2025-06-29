@@ -19,7 +19,7 @@ use Modules\Auth\App\Http\Controllers\UserController;
 Route::get('/', [AuthController::class, 'loginIndex'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
-Route::middleware(['web', 'auth'])->name('auth.')->group(function () {
+Route::middleware(['web', 'auth', 'check_user_active_status'])->name('auth.')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // change first password
@@ -32,7 +32,7 @@ Route::middleware(['web', 'auth'])->name('auth.')->group(function () {
     Route::post('/verify-two-step-verification-code', [AuthController::class, 'verifyTwoStepVerificationCode'])->name('verifyTwoStepVerificationCode');
 });
 
-Route::middleware(['web', 'auth', 'check_first_password_change', 'check_two_step_verification'])->prefix('user')->name('user.')->group(function () {
+Route::middleware(['web', 'auth', 'check_user_active_status', 'check_first_password_change', 'check_two_step_verification'])->prefix('user')->name('user.')->group(function () {
     Route::middleware(['role:super-admin'])->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
 

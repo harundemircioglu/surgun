@@ -21,7 +21,7 @@ use Modules\Plant\App\Http\Controllers\SeedCabinetController;
 |
 */
 
-Route::middleware(['web', 'auth', 'check_first_password_change', 'check_two_step_verification'])->prefix('plant')->name('plant.')->group(function () {
+Route::middleware(['web', 'auth', 'check_user_active_status', 'check_first_password_change', 'check_two_step_verification'])->prefix('plant')->name('plant.')->group(function () {
     Route::middleware(['role:super-admin|admin'])->prefix('material')->name('material.')->group(function () {
         // List and show routes
         Route::get('/', [PlantMaterialController::class, 'index'])->name('index');
