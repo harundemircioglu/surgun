@@ -14,7 +14,7 @@ class SeedCabinetRequest extends FormRequest
     {
         return [
             'code' => ['required', 'string', 'max:255', Rule::unique('seed_cabinets', 'code')->ignore($this->id)],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255', Rule::unique('seed_cabinets', 'description')->ignore($this->id)],
         ];
     }
 
@@ -29,6 +29,7 @@ class SeedCabinetRequest extends FormRequest
             'description.required' => 'Açıklama alanı zorunludur.',
             'description.string' => 'Açıklama geçerli bir metin olmalıdır.',
             'description.max' => 'Açıklama 255 karakteri geçmemelidir.',
+            'description.unique' => 'Bu açıklama zaten kullanılmış.',
         ];
     }
 
