@@ -194,8 +194,7 @@
                             <input type="hidden" name="search" value="{{ request()->search ?? null }}">
                             @csrf
                         </form>
-                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Tablo çıktı olarak alınacak.
-                            Onaylıyor musunuz?</h3>
+                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Dışa aktarma işlemini onaylıyor musunuz?</h3>
                         <button data-modal-hide="data-excel-export-modal" type="submit" form="export-form"
                             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Evet</button>
                         <button data-modal-hide="data-excel-export-modal" type="button"
