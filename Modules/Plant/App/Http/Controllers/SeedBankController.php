@@ -36,7 +36,7 @@ class SeedBankController extends Controller
                     'seedCabinet',
                 ]
             )
-            ->paginate(10);
+            ->paginate(20);
 
         $accesionNotebooks = AccesionNotebook::select(['id', 'plant_name'])
             ->where('status', 1)
