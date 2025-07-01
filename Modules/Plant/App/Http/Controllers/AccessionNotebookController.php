@@ -146,9 +146,9 @@ class AccessionNotebookController extends Controller
             ]);
         } catch (\Throwable $th) {
             Log::info($th);
-            return back()->with('error', 'Dosya gönderilirken hata oluştu!');
+            return back()->with('error', 'Dışa aktarma işleminde hata oluştu!');
         }
 
-        return back()->with('success', 'Dosya sıraya eklendi. Tamamlandığında mail olarak gönderilecek.');
+        return back()->with('success', 'Dışa aktarma sıraya eklendi. Tamamlandığında mail olarak gönderilecek.');
     }
 }

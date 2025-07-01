@@ -29,6 +29,6 @@ class AccessionNotebookAfterExport extends Mailable
     {
         return $this->view('plant::Emails.accessionNotebookAfterExport', [
             'path' => $this->path,
-        ])->subject('Aksesyon Defteri Excel Çıktısı');
+        ])->subject('Dışa Aktarılan Aksesyon Defteri');
     }
 }
