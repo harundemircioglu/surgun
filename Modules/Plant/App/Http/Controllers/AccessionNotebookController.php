@@ -8,7 +8,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Excel;
+use Modules\Plant\App\Emails\AccessionNotebookAfterExport;
+use Modules\Plant\App\Exports\AccessionNotebookExport;
 use Modules\Plant\App\Http\Requests\Create\AccessionNotebookRequest;
+use Modules\Plant\App\Http\Requests\Export\AccessionNotebookExportRequest;
 use Modules\Plant\App\Models\AccesionNotebook;
 use Modules\Plant\App\Models\PlantMaterial;
 use Modules\Plant\App\Models\PlantOrigin;
@@ -122,5 +128,27 @@ class AccessionNotebookController extends Controller
         });
 
         return redirect()->back()->with(['success' => 'Silme işlemi başarılı']);
+    }
+
+    public function export(AccessionNotebookExportRequest $request)
+    {
+        $search = $request->search ?? null;
+
+        $user = auth()->user();
+
+        $filename = 'accession_notebook_' . $user->id . '_' . now()->format('Ymd_His') . '.xlsx';
+
+        $filePath = 'storage/' . $filename;
+
+        try {
+            (new AccessionNotebookExport($search))->queue($filename, 'public')->chain([
+                Mail::to($user->email)->send(new AccessionNotebookAfterExport(asset($filePath))),
+            ]);
+        } catch (\Throwable $th) {
+            Log::info($th);
+            return back()->with('error', 'Dosya gönderilirken hata oluştu!');
+        }
+
+        return back()->with('success', 'Dosya sıraya eklendi. Tamamlandığında mail olarak gönderilecek.');
     }
 }

@@ -50,6 +50,7 @@ Route::middleware(['web', 'auth', 'check_user_active_status', 'check_first_passw
         Route::post('/store', [AccessionNotebookController::class, 'store'])->name('store')->middleware('can:can_create_data');
         Route::post('/update/{id}', [AccessionNotebookController::class, 'update'])->name('update')->middleware('can:can_update_data');
         Route::post('/destroy/{id}', [AccessionNotebookController::class, 'destroy'])->name('destroy')->middleware('can:can_delete_data');
+        Route::post('/export', [AccessionNotebookController::class, 'export'])->name('export');
     });
 
     Route::middleware(['role:super-admin|admin'])->prefix('seed-cabinet')->name('seed-cabinet.')->group(function () {
