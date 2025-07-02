@@ -2,28 +2,26 @@
 
 @section('content')
     @can('can_create_data')
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <button data-modal-target="data-excel-export-modal" data-modal-toggle="data-excel-export-modal" class="cursor-pointer"
-                type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 48 48">
-                    <path fill="#169154" d="M29,6H15.744C14.781,6,14,6.781,14,7.744v7.259h15V6z"></path>
-                    <path fill="#18482a" d="M14,33.054v7.202C14,41.219,14.781,42,15.743,42H29v-8.946H14z"></path>
-                    <path fill="#0c8045" d="M14 15.003H29V24.005000000000003H14z"></path>
-                    <path fill="#17472a" d="M14 24.005H29V33.055H14z"></path>
-                    <g>
-                        <path fill="#29c27f" d="M42.256,6H29v9.003h15V7.744C44,6.781,43.219,6,42.256,6z"></path>
-                        <path fill="#27663f" d="M29,33.054V42h13.257C43.219,42,44,41.219,44,40.257v-7.202H29z"></path>
-                        <path fill="#19ac65" d="M29 15.003H44V24.005000000000003H29z"></path>
-                        <path fill="#129652" d="M29 24.005H44V33.055H29z"></path>
-                    </g>
-                    <path fill="#0c7238"
-                        d="M22.319,34H5.681C4.753,34,4,33.247,4,32.319V15.681C4,14.753,4.753,14,5.681,14h16.638 C23.247,14,24,14.753,24,15.681v16.638C24,33.247,23.247,34,22.319,34z">
-                    </path>
-                    <path fill="#fff"
-                        d="M9.807 19L12.193 19 14.129 22.754 16.175 19 18.404 19 15.333 24 18.474 29 16.123 29 14.013 25.07 11.912 29 9.526 29 12.719 23.982z">
-                    </path>
-                </svg>
-            </button>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div class="flex justify-between sm:justify-between gap-2">
+                <button data-modal-target="data-excel-export-modal" data-modal-toggle="data-excel-export-modal"
+                    class="cursor-pointer" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 me-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+                    </svg>
+                </button>
+
+                <button data-modal-target="data-excel-import-modal" data-modal-toggle="data-excel-import-modal"
+                    class="cursor-pointer" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 me-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 20V8m0 0l-4 4m4-4l4 4M20 4H4" />
+                    </svg>
+                </button>
+            </div>
 
             <form action="{{ route('plant.accession-notebook.index') }}" method="GET"
                 class="flex w-full max-w-sm mx-auto sm:mx-0">
@@ -191,13 +189,71 @@
                                 d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
                         <form id="export-form" action="{{ route('plant.accession-notebook.export') }}" method="POST">
-                            <input type="hidden" name="search" value="{{ request()->search ?? null }}">
                             @csrf
+                            <input type="hidden" name="search" value="{{ request()->search ?? null }}">
                         </form>
-                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Dışa aktarma işlemini onaylıyor musunuz?</h3>
-                        <button data-modal-hide="data-excel-export-modal" type="submit" form="export-form"
+                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Dışa aktarma işlemini onaylıyor
+                            musunuz?</h3>
+                        <button type="submit" form="export-form"
                             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Evet</button>
                         <button data-modal-hide="data-excel-export-modal" type="button"
+                            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Hayır</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="data-excel-import-modal" tabindex="-1"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+                <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                    <button type="button"
+                        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="data-excel-import-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-4 md:p-5 text-center">
+                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <form id="import-form" action="{{ route('plant.accession-notebook.import') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="col-span-2">
+                                <div class="flex items-center justify-center w-full">
+                                    <label for="dropzone-file"
+                                        class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                            </svg>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                                    class="font-semibold">Dosyayı seçin</span> ya da sürükleyip bırakın</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">XLSX dosya formatı kabul edilmektedir
+                                            </p>
+                                        </div>
+                                        <input id="dropzone-file" type="file" class="hidden" name="file"
+                                            accept=".xlsx" required/>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                        <h3 class="mb-5 mt-5 text-lg font-normal text-gray-500 dark:text-gray-400">İçe aktarma işlemini
+                            onaylıyor
+                            musunuz?</h3>
+                        <button type="submit" form="import-form"
+                            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Evet</button>
+                        <button data-modal-hide="data-excel-import-modal" type="button"
                             class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Hayır</button>
                     </div>
                 </div>
