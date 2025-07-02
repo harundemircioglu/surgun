@@ -17,6 +17,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Validators\Failure;
+use Modules\Plant\App\Jobs\AccessionNotebookImportFail;
 use Modules\Plant\App\Models\AccesionNotebook;
 use Modules\Plant\App\Models\PlantMaterial;
 use Modules\Plant\App\Models\PlantOrigin;
@@ -115,11 +116,11 @@ class AccessionNotebookImport implements ToModel, WithChunkReading, ShouldQueue,
                 'attribute' => $failure->attribute(),
                 'errors' => $failure->errors(),
             ];
-
-            \Log::warning("Satır: {$failure->row()}, Sütun: {$failure->attribute()}, Hatalar: " . implode(', ', $failure->errors()));
         }
 
-        // ! errors array değil de collection ile mail gönderilmeli
+        \Log::warning('errors', $errors);
+
+        AccessionNotebookImportFail::dispatch(collect($errors), $this->user);
     }
 
     public function onError(\Throwable $e)

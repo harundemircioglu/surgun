@@ -143,7 +143,9 @@ class AccessionNotebookController extends Controller
         $filePath = 'storage/' . $filename;
 
         try {
-            (new AccessionNotebookExport($search))->queue($filename, 'public');
+            (new AccessionNotebookExport($search))->queue($filename, 'public')->chain([
+                new \Modules\Plant\App\Jobs\AccessionNotebookAfterExport(asset($filePath), $user),
+            ]);
         } catch (\Throwable $th) {
             Log::info($th);
             return back()->with('error', 'Dışa aktarma işleminde hata oluştu!');
@@ -159,7 +161,9 @@ class AccessionNotebookController extends Controller
         $user = auth()->user();
 
         try {
-            (new AccessionNotebookImport($user))->queue($file);
+            (new AccessionNotebookImport($user))->queue($file)->chain([
+                new \Modules\Plant\App\Jobs\AccessionNotebookAfterImport($user),
+            ]);
         } catch (\Throwable $th) {
             Log::info($th);
             return back()->with('error', 'İçe aktarma işleminde hata oluştu!');
