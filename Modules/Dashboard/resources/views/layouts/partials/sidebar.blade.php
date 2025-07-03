@@ -217,6 +217,19 @@
                     </a>
                 </li>
             @endrole
+            @role(['super-admin'])
+                <li>
+                    <a href="{{ route('dashboard.charts') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 3a9 9 0 1 0 9 9h-9V3z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Grafikler</span>
+                    </a>
+                </li>
+            @endrole
         </ul>
     </div>
 </aside>
