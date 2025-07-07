@@ -21,31 +21,31 @@
 
 #### 🔑 Giriş Ekranı
 
-![Login](assets/screenshots/login.png)
+![Login](assets/screenshots/login.PNG)
 
 #### 📧 İki Adımlı Doğrulama
 
-![2FA](assets/screenshots/two_step_verification.png)
+![2FA](assets/screenshots/two_step_verification.PNG)
 
 #### 🧲 Dashboard (Hızlı Bilgiler)
 
-![Dashboard](assets/screenshots/dashboard.png)
+![Dashboard](assets/screenshots/dashboard.PNG)
 
 #### 📅 Excel İçe Aktarma Ekranı
 
-![Import](assets/screenshots/import.png)
+![Import](assets/screenshots/import.PNG)
 
 #### 📄 Excel Dışa Aktarma Ekranı
 
-![Export](assets/screenshots/export.png)
+![Export](assets/screenshots/export.PNG)
 
 #### 📧 İçe Aktarma Sonrası Başarılı Mail
 
-![Import Success Email](assets/screenshots/import_email_succes.png)
+![Import Success Email](assets/screenshots/import_email_succes.PNG)
 
 #### ❌ Hatalı İçerik Maili
 
-![Import Error Email](assets/screenshots/import_email_fail.png)
+![Import Error Email](assets/screenshots/import_email_fail.PNG)
 
 ---
 
