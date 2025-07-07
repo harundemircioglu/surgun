@@ -6,14 +6,14 @@
 
 ### 🚀 Özellikler
 
-* 👤 Kullanıcı kayıt ve giriş sistemi
-* 🔐 İki adımlı doğrulama (2FA) ve geçici şifre ile erişim
-* 📊 Dashboard üzerinde hızlı veri görünümü
-* 📅 Excel üzerinden **içe aktarma** (arka planda job ile)
-* 📄 Excel üzerinden **dışına aktarma** (arka planda job ile)
-* 📧 Başarılı / hatalı içe aktarma sonrası mail bildirimi
-* 📊 Grafiksel analizler (pasta grafik)
-* 📦 Role ve permission tabanlı yetkilendirme sistemi
+-   👤 Kullanıcı kayıt ve giriş sistemi
+-   🔐 İki adımlı doğrulama (2FA) ve geçici şifre ile erişim
+-   📊 Dashboard üzerinde hızlı veri görünümü
+-   📅 Excel üzerinden **içe aktarma** (arka planda job ile)
+-   📄 Excel üzerinden **dışına aktarma** (arka planda job ile)
+-   📧 Başarılı / hatalı içe aktarma sonrası mail bildirimi
+-   📊 Grafiksel analizler
+-   📦 Role ve permission tabanlı yetkilendirme sistemi
 
 ---
 
@@ -51,14 +51,14 @@
 
 ### 🛠️ Kullanılan Teknolojiler
 
-* **Laravel**
-* **Tailwind CSS**
-* **Flowbite**
-* **MySQL**
-* **Laravel Excel**
-* **Spatie Permission**
-* **Job Queue (Queueable Jobs)**
-* **Mail Notification System**
+-   **Laravel**
+-   **Tailwind CSS**
+-   **Flowbite**
+-   **MySQL**
+-   **Laravel Excel**
+-   **Spatie Permission**
+-   **Job Queue (Queueable Jobs)**
+-   **Mail Notification System**
 
 ---
 
@@ -71,12 +71,15 @@ Bu proje, gerçek bir botanik bahçesinden sağlanan tablo yapıları referans a
 ### 📁 Kurulum
 
 ```bash
-git clone https://github.com/kullaniciadi/surgun.git
+git clone https://github.com/harundemircioglu/surgun.git
 cd surgun
+git checkout dev
 composer install
 cp .env.example .env
 php artisan key:generate
-php artisan migrate --seed
+php artisan migrate
+php artisan module:seed Role
+php artisan module:seed Auth
 php artisan serve
 ```
 
@@ -90,7 +93,7 @@ php artisan serve
 
 ### 🔗 Bağlantılar
 
-* [📂 GitHub Repository](https://github.com/harundemircioglu/surgun)
-* [📖 Laravel Excel](https://laravel-excel.com/)
-* [📻 Flowbite Docs](https://flowbite.com/docs/)
-* [🛡️ Spatie Permission](https://spatie.be/docs/laravel-permission)
+-   [📂 GitHub Repository](https://github.com/harundemircioglu/surgun)
+-   [📖 Laravel Excel](https://laravel-excel.com/)
+-   [📻 Flowbite Docs](https://flowbite.com/docs/)
+-   [🛡️ Spatie Permission](https://spatie.be/docs/laravel-permission)
