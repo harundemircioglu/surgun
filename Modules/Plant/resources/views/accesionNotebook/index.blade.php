@@ -87,7 +87,7 @@
                             <div class="col-span-2">
                                 <label for="plant_name"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bitki Adı</label>
-                                <input type="text" name="plant_name" id="plant_name"
+                                <input type="text" name="plant_name" id="plant_name" value="{{ old('plant_name') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Bitki Adı" required="">
                                 @error('plant_name')
@@ -125,7 +125,7 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="location"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lokasyon</label>
-                                <input type="text" name="location" id="location"
+                                <input type="text" name="location" id="location" value="{{ old('location') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Lokasyon" required="">
                                 @error('location')
@@ -135,7 +135,7 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="coordinate"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Koordinat</label>
-                                <input type="text" name="coordinate" id="coordinate"
+                                <input type="text" name="coordinate" id="coordinate" value="{{ old('coordinate') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Koordinat" required="">
                                 @error('coordinate')
@@ -147,6 +147,7 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Toplanma
                                     Tarihi</label>
                                 <input type="date" id="convening_date" name="convening_date"
+                                    value="{{ old('convening_date') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 @error('convening_date')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -239,11 +240,12 @@
                                             </svg>
                                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
                                                     class="font-semibold">Dosyayı seçin</span> ya da sürükleyip bırakın</p>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400">XLSX dosya formatı kabul edilmektedir
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">XLSX dosya formatı kabul
+                                                edilmektedir
                                             </p>
                                         </div>
                                         <input id="dropzone-file" type="file" class="hidden" name="file"
-                                            accept=".xlsx" required/>
+                                            accept=".xlsx" required />
                                     </label>
                                 </div>
                             </div>

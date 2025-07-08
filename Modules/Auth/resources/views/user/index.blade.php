@@ -66,7 +66,7 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="name"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ad</label>
-                                <input type="text" name="name" id="name"
+                                <input type="text" name="name" id="name" value="{{ old('name') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Ad" required="">
                                 @error('name')
@@ -76,7 +76,7 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="surname"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Soyad</label>
-                                <input type="text" name="surname" id="surname"
+                                <input type="text" name="surname" id="surname" value="{{ old('surname') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Soyad">
                                 @error('surname')
@@ -86,7 +86,7 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="email"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="email" name="email" id="email"
+                                <input type="email" name="email" id="email" value="{{ old('email') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Email" required="">
                                 @error('email')
@@ -96,7 +96,7 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="phone"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefon</label>
-                                <input type="phone" name="phone" id="phone"
+                                <input type="phone" name="phone" id="phone" value="{{ old('phone') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Telefon">
                                 @error('phone')
@@ -324,8 +324,8 @@
                                                             <li
                                                                 class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                                                                 <div class="flex items-center ps-3">
-                                                                    <input id="status_active" type="radio"
-                                                                        value="1" name="active_status"
+                                                                    <input id="status_active" type="radio" value="1"
+                                                                        name="active_status"
                                                                         @if ($user->is_active) checked @endif
                                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                                     <label for="status_active"
@@ -335,8 +335,8 @@
                                                             <li
                                                                 class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                                                                 <div class="flex items-center ps-3">
-                                                                    <input id="status_passive" type="radio"
-                                                                        value="0" name="active_status"
+                                                                    <input id="status_passive" type="radio" value="0"
+                                                                        name="active_status"
                                                                         @if (!$user->is_active) checked @endif
                                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                                     <label for="status_passive"
