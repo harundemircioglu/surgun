@@ -48,13 +48,13 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
-        $towStepVerification = true;
+        $twoStepVerification = true;
 
         if ($user->two_step_verification) {
-            $towStepVerification = false;
+            $twoStepVerification = false;
         }
 
-        $user->two_step_verification = $towStepVerification;
+        $user->two_step_verification = $twoStepVerification;
         $user->save();
 
         return response()->json([
