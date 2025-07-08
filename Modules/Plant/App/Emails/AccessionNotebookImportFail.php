@@ -29,6 +29,6 @@ class AccessionNotebookImportFail extends Mailable
     {
         return $this->view('plant::Emails.accessionNotebookImportFail', [
             'errors' => $this->errors,
-        ])->subject('İçe Aktarma İşlemindeki Hatalar');
+        ])->subject('İçe Aktarma İşleminde Hata Oluştu');
     }
 }

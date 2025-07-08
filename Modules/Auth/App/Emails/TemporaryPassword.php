@@ -29,6 +29,6 @@ class TemporaryPassword extends Mailable
     {
         return $this->view('auth::Emails.temporaryPassword', [
             'password' => $this->password
-        ])->subject('Temporary Password');
+        ])->subject('Hesabınız Oluşturuldu!');
     }
 }

@@ -17,6 +17,6 @@ class AccessionNotebookAfterImport extends Mailable
     public function build(): self
     {
         return $this->view('plant::Emails.accessionNotebookAfterImport')
-            ->subject('Aksesyon Defteri İçe Aktarma Tamamlandı');
+            ->subject('İçe Aktarma İşleminiz Tamamlandı!');
     }
 }

@@ -29,6 +29,6 @@ class TwoStepVerification extends Mailable
     {
         return $this->view('auth::Emails.twoStepVerification', [
             'code' => $this->code,
-        ])->subject('Two-Step Verification Code');
+        ])->subject('İki Adımlı Doğrulama Kodu');
     }
 }
