@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Modules\Plant\App\Models\AccesionNotebook;
+use Modules\Plant\App\Models\SeedBank;
 
 class ChartController extends Controller
 {
@@ -66,6 +67,33 @@ class ChartController extends Controller
         return response()->json([
             'labels' => $labels,
             'data' => $data,
+        ]);
+    }
+
+    public function getSeedBankData()
+    {
+        $seedBanks = SeedBank::select('id', 'accesion_notebook_id', 'quantity')
+            ->where('status', 1)
+            ->with(
+                [
+                    'accessionNotebook' => function ($query) {
+                        $query->select('id', 'plant_name');
+                    },
+                ]
+            )
+            ->get();
+
+        $data = $seedBanks->map(function ($item) {
+            return (int) $item->quantity;
+        });
+
+        $labels = $seedBanks->map(function ($item) {
+            return $item->accessionNotebook->plant_name;
+        });
+
+        return response()->json([
+            'data' => $data,
+            'labels' => $labels,
         ]);
     }
 }

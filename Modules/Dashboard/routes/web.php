@@ -25,5 +25,7 @@ Route::middleware(['web', 'auth', 'check_user_active_status', 'check_first_passw
         Route::get('/charts', [ChartController::class, 'index'])->name('charts');
 
         Route::get('/get-accession-notebook-chart-data', [ChartController::class, 'getAccessionNotebookData'])->name('getAccessionNotebookData');
+
+        Route::get('/get-seed-bank-data', [ChartController::class, 'getSeedBankData'])->name('getSeedBankData');
     });
 });
