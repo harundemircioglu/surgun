@@ -13,7 +13,7 @@ class SeedBankRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'accesion_notebook_id' => ['required', Rule::exists('accesion_notebooks', 'id')],
+            'accesion_notebook_id' => ['required', Rule::unique('seed_banks', 'accesion_notebook_id')],
             'quantity' => ['required', 'json'],
             'seed_cabinet_id' => ['required', Rule::exists('seed_cabinets', 'id')],
         ];
@@ -23,7 +23,7 @@ class SeedBankRequest extends FormRequest
     {
         return [
             'accesion_notebook_id.required' => 'Kayıt defteri alanı zorunludur.',
-            'accesion_notebook_id.exists' => 'Seçilen kayıt defteri geçersiz.',
+            'accesion_notebook_id.unique' => 'Seçilen kayıt defteri önceden eklenmiş.',
 
             'quantity.required' => 'Miktar alanı zorunludur.',
             'quantity.json' => 'Miktar geçerli bir JSON dizgesi olmalıdır.',
