@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "016ae875ac0f9d4b0c5a91457e739a55",
+    "content-hash": "b14c3d66e41f6d57daa5695030b598fa",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1506,6 +1506,54 @@
                 }
             ],
             "time": "2025-02-03T10:55:03+00:00"
+        },
+        {
+            "name": "harun/log-module",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:harundemircioglu/laravel-log-module.git",
+                "reference": "c22f89bcb2da4a3e492f584259005eba98894f41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/harundemircioglu/laravel-log-module/zipball/c22f89bcb2da4a3e492f584259005eba98894f41",
+                "reference": "c22f89bcb2da4a3e492f584259005eba98894f41",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "php": "^8.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Log\\Providers\\LogServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Log\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Harun Demircioğlu",
+                    "email": "email@adresin.com"
+                }
+            ],
+            "description": "Harun Log Module",
+            "support": {
+                "source": "https://github.com/harundemircioglu/laravel-log-module/tree/main",
+                "issues": "https://github.com/harundemircioglu/laravel-log-module/issues"
+            },
+            "time": "2026-01-25T19:05:31+00:00"
         },
         {
             "name": "laravel/framework",
@@ -9825,7 +9873,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "harun/log-module": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
