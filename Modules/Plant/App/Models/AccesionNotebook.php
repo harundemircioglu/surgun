@@ -4,9 +4,12 @@ namespace Modules\Plant\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Auth\App\Models\User;
+use Modules\Log\Traits\Auditable;
 
 class AccesionNotebook extends Model
 {
+    use Auditable;
+
     protected $guarded = [];
 
     public function user()

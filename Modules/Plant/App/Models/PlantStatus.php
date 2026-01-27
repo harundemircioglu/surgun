@@ -3,9 +3,12 @@
 namespace Modules\Plant\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Log\Traits\Auditable;
 
 class PlantStatus extends Model
 {
+    use Auditable;
+
     protected $guarded = [];
 
     public function accesionNotebook()
